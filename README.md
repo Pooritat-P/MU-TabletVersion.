@@ -53,3 +53,14 @@ Math Universe เป็นเว็บแอปเกมการศึกษา
 Developed by **Pooritat Pilab**  
 Co-developed with **ChatGPT**  
 โรงเรียนบ้านอีมาดอีทราย
+
+
+---
+
+## Keyboard Safe Area Phase 1
+
+แพตช์นี้แก้เฉพาะปัญหา Keyboard บน iPad/Tablet โดยไม่แตะ Gameplay หลัก
+
+- เพิ่มแป้นตัวเลขบนจอสำหรับอุปกรณ์ Touch
+- ป้องกัน Virtual Keyboard ดันภาพเกม
+- ไม่แก้ Boss, Combo, Distance, Mission Report หรือระบบเกมหลัก
