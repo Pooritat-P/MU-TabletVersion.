@@ -2480,6 +2480,19 @@ body.tabletControlBarActive #pilotLine{
   }
 }
 
+/* TABLET TRUE SCREEN CENTER QUESTION FIX */
+body.tabletControlBarActive #question{position:absolute!important;left:50vw!important;right:auto!important;top:38px!important;width:46vw!important;min-width:0!important;max-width:46vw!important;height:94px!important;transform:translateX(-50%)!important;margin:0!important;box-sizing:border-box!important;display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;padding:8px 18px!important;font-size:clamp(34px,5.5vw,64px)!important;line-height:1!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;z-index:64!important}
+body.tabletControlBarActive #aura{position:absolute!important;left:50vw!important;right:auto!important;top:4px!important;width:46vw!important;transform:translateX(-50%)!important;margin:0!important;text-align:center!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;z-index:65!important}
+body.tabletControlBarActive #statusHud{left:1vw!important;top:10px!important;width:22vw!important;max-width:22vw!important;min-width:0!important;height:126px!important;overflow:hidden!important;box-sizing:border-box!important;z-index:66!important}
+body.tabletControlBarActive #soundBtn{top:12px!important;right:128px!important;z-index:70!important}
+body.tabletControlBarActive #pauseBtn{top:12px!important;right:12px!important;z-index:70!important}
+body.tabletControlBarActive #distanceMiniMap{left:auto!important;right:1vw!important;top:76px!important;width:22vw!important;max-width:22vw!important;transform:none!important;z-index:63!important}
+@media (max-height:760px) and (pointer:coarse){
+body.tabletControlBarActive #question{left:50vw!important;width:46vw!important;max-width:46vw!important;top:34px!important;height:78px!important;transform:translateX(-50%)!important;font-size:clamp(30px,5vw,54px)!important}
+body.tabletControlBarActive #aura{left:50vw!important;width:46vw!important;transform:translateX(-50%)!important}
+body.tabletControlBarActive #statusHud{width:22vw!important;max-width:22vw!important;height:112px!important}
+body.tabletControlBarActive #distanceMiniMap{right:1vw!important;width:22vw!important;max-width:22vw!important;top:70px!important}}
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 </head>
