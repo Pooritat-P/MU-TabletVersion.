@@ -2132,281 +2132,181 @@ body.tabletControlBarActive #answer{
 }
 
 
-/* ===== TABLET TOP UI FINE TUNE =====
-   Fine-tunes top HUD spacing after Tablet UI + Boss Modal Fix.
-   Goal: HP panel, question box, Aura, timer/pilot line, and distance route do not overlap on iPad landscape.
+/* ===== TABLET TOPBAR STABLE GRID =====
+   This replaces the previous tablet topbar attempt.
+   It applies when Tablet Control V2F is active, not by iPad media detection.
+   Layout: Status 25% | Question 50% | Distance 25%
 */
-@media (pointer:coarse), (max-aspect-ratio: 4/3), (max-width:1180px){
-  #hud{
-    width:29vw!important;
-    max-width:405px!important;
-    min-width:250px!important;
-  }
+body.tabletControlBarActive #game{
+  --tablet-topbar-h: 138px;
+}
 
-  #aura{
-    left:36vw!important;
-    width:34vw!important;
+/* LEFT 25% : Status */
+body.tabletControlBarActive #hud{
+  position:absolute!important;
+  left:0.8vw!important;
+  top:8px!important;
+  width:23.4vw!important;
+  min-width:0!important;
+  max-width:23.4vw!important;
+  height:122px!important;
+  box-sizing:border-box!important;
+  padding:8px 10px!important;
+  overflow:hidden!important;
+  border-radius:16px!important;
+  z-index:60!important;
+  font-size:clamp(12px,1.45vw,18px)!important;
+  line-height:1.25!important;
+  transform:none!important;
+}
+body.tabletControlBarActive #hud .bar{
+  width:clamp(70px,12vw,170px)!important;
+  height:10px!important;
+}
+
+/* CENTER 50% : Aura + Question */
+body.tabletControlBarActive #aura{
+  position:absolute!important;
+  left:25.5vw!important;
+  top:4px!important;
+  width:49vw!important;
+  z-index:61!important;
+  font-size:clamp(13px,1.55vw,20px)!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  text-align:center!important;
+}
+
+body.tabletControlBarActive #question{
+  position:absolute!important;
+  left:25.5vw!important;
+  top:34px!important;
+  width:49vw!important;
+  height:96px!important;
+  min-height:0!important;
+  box-sizing:border-box!important;
+  padding:8px 14px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  z-index:59!important;
+  font-size:clamp(34px,5.6vw,66px)!important;
+  line-height:1!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  border-radius:18px!important;
+  background:rgba(0,0,0,.34)!important;
+  border:2px solid rgba(117,234,255,.65)!important;
+}
+
+/* RIGHT 25% : Distance */
+body.tabletControlBarActive #distanceMiniMap{
+  position:absolute!important;
+  left:75.5vw!important;
+  right:auto!important;
+  top:42px!important;
+  width:23.5vw!important;
+  height:82px!important;
+  transform:none!important;
+  transform-origin:top left!important;
+  z-index:58!important;
+}
+body.tabletControlBarActive #miniRoute{
+  left:8px!important;
+  right:52px!important;
+  top:38px!important;
+}
+body.tabletControlBarActive #miniShip{
+  top:19px!important;
+  transform:scale(.8)!important;
+  transform-origin:center!important;
+}
+body.tabletControlBarActive #miniPlanet{
+  right:2px!important;
+  top:10px!important;
+  width:54px!important;
+}
+body.tabletControlBarActive #miniTargetLabel,
+body.tabletControlBarActive #planetMini{
+  display:none!important;
+}
+
+/* Move action buttons below the topbar so they do not compete with Distance */
+body.tabletControlBarActive #soundBtn{
+  top:calc(var(--tablet-topbar-h) + 6px)!important;
+  right:128px!important;
+  z-index:70!important;
+  font-size:clamp(13px,1.8vw,17px)!important;
+  padding:8px 12px!important;
+}
+body.tabletControlBarActive #pauseBtn{
+  top:calc(var(--tablet-topbar-h) + 6px)!important;
+  right:12px!important;
+  z-index:70!important;
+  font-size:clamp(13px,1.8vw,17px)!important;
+  padding:8px 12px!important;
+}
+
+/* Timer / Pilot line placed below topbar */
+body.tabletControlBarActive #timer{
+  top:calc(var(--tablet-topbar-h) + 48px)!important;
+  left:25vw!important;
+  width:50vw!important;
+  z-index:50!important;
+  font-size:clamp(22px,3vw,34px)!important;
+}
+body.tabletControlBarActive #pilotLine{
+  top:calc(var(--tablet-topbar-h) + 96px)!important;
+  left:35vw!important;
+  width:30vw!important;
+  z-index:50!important;
+  font-size:clamp(16px,2vw,24px)!important;
+}
+
+/* For short iPad Safari viewport */
+@media(max-height:760px){
+  body.tabletControlBarActive #game{
+    --tablet-topbar-h: 118px;
+  }
+  body.tabletControlBarActive #hud{
     top:6px!important;
-    font-size:clamp(15px,1.8vw,22px)!important;
+    height:104px!important;
+    padding:6px 8px!important;
+    font-size:clamp(11px,1.35vw,15px)!important;
   }
-
-  #question{
-    left:35vw!important;
-    width:30vw!important;
-    top:70px!important;
-    font-size:clamp(38px,6.1vw,66px)!important;
-    padding:12px 14px!important;
-    min-height:96px!important;
-    display:flex!important;
-    align-items:center!important;
-    justify-content:center!important;
+  body.tabletControlBarActive #hud .bar{
+    width:clamp(60px,10.5vw,135px)!important;
+    height:9px!important;
   }
-
-  #timer{
-    left:31vw!important;
-    width:34vw!important;
-    top:292px!important;
-    font-size:clamp(22px,3vw,34px)!important;
-  }
-
-  #pilotLine{
-    left:40vw!important;
-    width:24vw!important;
-    top:350px!important;
-    font-size:clamp(17px,2.1vw,25px)!important;
-  }
-
-  #distanceMiniMap{
-    top:136px!important;
-    right:150px!important;
-    width:340px!important;
-    transform:scale(.68)!important;
-    transform-origin:top right!important;
-  }
-
-  #planetMini{
-    top:128px!important;
-    right:38px!important;
-    width:78px!important;
-  }
-
-  #soundBtn,#pauseBtn{
-    top:14px!important;
-  }
-}
-
-/* Extra tuning for iPad Safari with browser chrome visible */
-@media (pointer:coarse) and (max-height:760px){
-  #hud{
-    transform:scale(.88)!important;
-    transform-origin:top left!important;
-  }
-  #question{
-    left:36vw!important;
-    width:28vw!important;
-    top:64px!important;
-    font-size:clamp(34px,5.7vw,58px)!important;
-    min-height:82px!important;
-  }
-  #aura{
-    left:35vw!important;
-    width:36vw!important;
-  }
-  #timer{
-    top:260px!important;
-    left:30vw!important;
-    width:34vw!important;
-  }
-  #pilotLine{
-    top:312px!important;
-    left:40vw!important;
-    width:24vw!important;
-  }
-  #distanceMiniMap{
-    top:126px!important;
-    right:142px!important;
-    transform:scale(.62)!important;
-  }
-  #planetMini{
-    top:120px!important;
-    width:70px!important;
-  }
-}
-
-
-/* ===== TABLET TOP BAR 25-50-25 LAYOUT =====
-   One unified top row:
-   StatusBars 25% | Question 50% | Distance 25%
-   This replaces tablet-only free-position HUD tuning.
-*/
-@media (pointer:coarse), (max-aspect-ratio: 4/3), (max-width:1180px){
-  #game{
-    --topbar-h: 132px;
-  }
-
-  #hud{
-    position:absolute!important;
-    left:1vw!important;
-    top:10px!important;
-    width:24vw!important;
-    min-width:0!important;
-    max-width:none!important;
-    height:calc(var(--topbar-h) - 18px)!important;
-    padding:8px 10px!important;
-    font-size:clamp(13px,1.55vw,18px)!important;
-    line-height:1.25!important;
-    z-index:50!important;
-    overflow:hidden!important;
-    border-radius:18px!important;
-  }
-  #hud .bar{
-    width:clamp(70px,11vw,150px)!important;
-    height:10px!important;
-  }
-
-  #aura{
-    left:26vw!important;
+  body.tabletControlBarActive #aura{
     top:2px!important;
-    width:48vw!important;
-    font-size:clamp(13px,1.55vw,20px)!important;
-    white-space:nowrap!important;
-    overflow:hidden!important;
-    text-overflow:ellipsis!important;
-    z-index:52!important;
+    font-size:clamp(12px,1.4vw,18px)!important;
   }
-
-  #question{
-    position:absolute!important;
-    left:26vw!important;
-    top:30px!important;
-    width:48vw!important;
-    height:92px!important;
-    min-height:0!important;
-    padding:8px 14px!important;
-    box-sizing:border-box!important;
-    display:flex!important;
-    align-items:center!important;
-    justify-content:center!important;
-    text-align:center!important;
-    font-size:clamp(38px,6.2vw,72px)!important;
-    line-height:1!important;
-    white-space:nowrap!important;
-    overflow:hidden!important;
-    text-overflow:ellipsis!important;
-    border-radius:22px!important;
-    background:rgba(0,0,0,.34)!important;
-    border:2px solid rgba(117,234,255,.65)!important;
-    z-index:49!important;
-  }
-
-  #distanceMiniMap{
-    position:absolute!important;
-    left:75vw!important;
-    right:auto!important;
-    top:36px!important;
-    width:23vw!important;
-    height:76px!important;
-    transform:none!important;
-    z-index:48!important;
-  }
-  #miniRoute{
-    left:8px!important;
-    right:52px!important;
-    top:38px!important;
-  }
-  #miniShip{
-    top:20px!important;
-  }
-  #miniPlanet{
-    right:0!important;
-    top:10px!important;
-    width:56px!important;
-  }
-  #miniTargetLabel{
-    display:none!important;
-  }
-  #planetMini{
-    display:none!important;
-  }
-
-  #soundBtn{
-    top:calc(var(--topbar-h) + 6px)!important;
-    right:128px!important;
-    z-index:55!important;
-    font-size:clamp(13px,1.8vw,17px)!important;
-    padding:8px 12px!important;
-  }
-  #pauseBtn{
-    top:calc(var(--topbar-h) + 6px)!important;
-    right:12px!important;
-    z-index:55!important;
-    font-size:clamp(13px,1.8vw,17px)!important;
-    padding:8px 12px!important;
-  }
-
-  #timer{
-    top:calc(var(--topbar-h) + 48px)!important;
-    left:28vw!important;
-    width:42vw!important;
-    font-size:clamp(21px,2.9vw,34px)!important;
-    z-index:45!important;
-  }
-  #pilotLine{
-    top:calc(var(--topbar-h) + 94px)!important;
-    left:36vw!important;
-    width:30vw!important;
-    font-size:clamp(16px,2vw,24px)!important;
-    z-index:45!important;
-  }
-
-  #ship{
-    top:58vh!important;
-  }
-  #enemy{
-    top:60vh!important;
-  }
-}
-
-/* Short iPad landscape with browser chrome */
-@media (pointer:coarse) and (max-height:760px){
-  #game{
-    --topbar-h: 116px;
-  }
-  #hud{
-    top:8px!important;
-    height:100px!important;
-    font-size:clamp(12px,1.45vw,16px)!important;
-    padding:7px 9px!important;
-    transform:none!important;
-  }
-  #hud .bar{
-    width:clamp(58px,10vw,132px)!important;
-  }
-  #aura{
-    top:2px!important;
-    font-size:clamp(12px,1.45vw,18px)!important;
-  }
-  #question{
+  body.tabletControlBarActive #question{
     top:28px!important;
-    height:76px!important;
-    font-size:clamp(32px,5.5vw,58px)!important;
+    height:82px!important;
+    font-size:clamp(30px,5vw,56px)!important;
     padding:7px 12px!important;
   }
-  #distanceMiniMap{
-    top:28px!important;
-    height:68px!important;
+  body.tabletControlBarActive #distanceMiniMap{
+    top:34px!important;
+    height:72px!important;
   }
-  #miniPlanet{
+  body.tabletControlBarActive #miniPlanet{
     width:48px!important;
   }
-  #soundBtn,#pauseBtn{
-    top:calc(var(--topbar-h) + 2px)!important;
+  body.tabletControlBarActive #soundBtn,
+  body.tabletControlBarActive #pauseBtn{
+    top:calc(var(--tablet-topbar-h) + 4px)!important;
   }
-  #timer{
-    top:calc(var(--topbar-h) + 38px)!important;
+  body.tabletControlBarActive #timer{
+    top:calc(var(--tablet-topbar-h) + 40px)!important;
   }
-  #pilotLine{
-    top:calc(var(--topbar-h) + 80px)!important;
+  body.tabletControlBarActive #pilotLine{
+    top:calc(var(--tablet-topbar-h) + 80px)!important;
   }
 }
 
