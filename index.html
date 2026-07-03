@@ -1734,6 +1734,111 @@ body.tabletKeyboardSafe #answer{
   }
 }
 
+
+/* ===== TABLET CONTROL VER. 1.0 =====
+   External control layer outside the game canvas.
+   Fixes tablet keyboard and blocked touch problems.
+   Does not change gameplay systems.
+*/
+#tabletControlLayer{
+  display:none;
+  position:fixed;
+  left:12px;
+  bottom:calc(12px + env(safe-area-inset-bottom,0px));
+  z-index:999999;
+  width:178px;
+  padding:8px;
+  border-radius:16px;
+  background:rgba(0,14,32,.78);
+  border:2px solid rgba(117,234,255,.45);
+  box-shadow:0 0 28px rgba(117,234,255,.28), inset 0 0 14px rgba(255,255,255,.06);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  pointer-events:auto;
+  user-select:none;
+  -webkit-user-select:none;
+}
+body.tabletControlActive #tabletControlLayer{
+  display:block;
+}
+#tabletAnswerDisplay{
+  width:100%;
+  min-height:38px;
+  margin-bottom:7px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:11px;
+  background:rgba(0,0,0,.68);
+  border:2px solid rgba(117,234,255,.75);
+  color:#fff;
+  font-size:22px;
+  font-weight:bold;
+  box-shadow:0 0 14px rgba(117,234,255,.24);
+}
+#tabletAnswerDisplay.empty{
+  color:rgba(255,255,255,.48);
+  font-size:16px;
+}
+#tabletKeypadV1{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:5px;
+}
+#tabletKeypadV1 button{
+  pointer-events:auto!important;
+  min-height:34px;
+  padding:4px 0;
+  border-radius:10px;
+  border:0;
+  background:linear-gradient(180deg,#2fc7ff,#1684c4);
+  color:#02101c;
+  font-weight:bold;
+  font-size:18px;
+  line-height:1;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+  cursor:pointer;
+}
+#tabletKeypadV1 button[data-key="enter"]{
+  background:linear-gradient(180deg,#ffd966,#f59e0b);
+  font-size:15px;
+}
+#tabletKeypadV1 button[data-key="back"]{
+  background:linear-gradient(180deg,#9fb7c9,#51687a);
+  color:#fff;
+}
+body.tabletControlActive #answerWrap{
+  display:none!important;
+}
+body.tabletControlActive #answer{
+  pointer-events:none!important;
+}
+@media (max-height:760px){
+  #tabletControlLayer{
+    left:8px;
+    bottom:8px;
+    width:162px;
+    padding:7px;
+  }
+  #tabletAnswerDisplay{
+    min-height:32px;
+    font-size:19px;
+    margin-bottom:5px;
+  }
+  #tabletKeypadV1{
+    gap:4px;
+  }
+  #tabletKeypadV1 button{
+    min-height:30px;
+    font-size:16px;
+    border-radius:8px;
+  }
+  #tabletKeypadV1 button[data-key="enter"]{
+    font-size:14px;
+  }
+}
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js">
 window.addEventListener('load',()=>{try{setMiniShipIcon();}catch(e){};
@@ -2014,6 +2119,123 @@ window.addEventListener('DOMContentLoaded', setupKeypadRealTouch);
 setTimeout(setupKeypadRealTouch, 250);
 
 setupKeypadRealTouch();
+
+// ===== TABLET CONTROL VER. 1.0 =====
+let tabletControlValue = "";
+let tabletControlLastTap = 0;
+
+function tabletControlIsTouchDevice(){
+  return (navigator.maxTouchPoints && navigator.maxTouchPoints > 0)
+    || ('ontouchstart' in window)
+    || (window.matchMedia && window.matchMedia('(pointer: coarse)').matches)
+    || /iPad|Android|Tablet|Mobile/i.test(navigator.userAgent)
+    || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+}
+
+function tabletControlUpdateDisplay(){
+  const display = document.getElementById('tabletAnswerDisplay');
+  const input = document.getElementById('answer');
+  if(!display) return;
+  if(tabletControlValue){
+    display.textContent = tabletControlValue;
+    display.classList.remove('empty');
+  }else{
+    display.textContent = 'คำตอบ';
+    display.classList.add('empty');
+  }
+  if(input) input.value = tabletControlValue;
+}
+
+function tabletControlSubmit(raw){
+  raw = String(raw || '').trim();
+  const input = document.getElementById('answer');
+  if(raw === '') return false;
+
+  const v = parseInt(raw);
+  const answerable = !['setup','ended','emergency','recovered'].includes(phase);
+
+  if(bossMode && bossMeteorActive && v === bossMeteorAnswer){
+    tabletControlValue = '';
+    if(input) input.value = '';
+    tabletControlUpdateDisplay();
+    shootBossMeteor();
+    return true;
+  }
+
+  if(canSubmit && answerable && v === ans && (!bossMode || (!bossMeteorActive && bossPhase === 'BOSS'))){
+    tabletControlValue = '';
+    if(input) input.value = '';
+    tabletControlUpdateDisplay();
+    correctNormal();
+    return true;
+  }
+
+  if(answerable && !Number.isNaN(v)){
+    registerWrongAttempt();
+  }
+
+  tabletControlValue = '';
+  if(input) input.value = '';
+  tabletControlUpdateDisplay();
+  return true;
+}
+
+function tabletControlPress(key){
+  const now = Date.now();
+  if(now - tabletControlLastTap < 80) return false;
+  tabletControlLastTap = now;
+
+  if(key === 'back'){
+    tabletControlValue = tabletControlValue.slice(0,-1);
+  }else if(key === 'enter'){
+    tabletControlSubmit(tabletControlValue);
+  }else{
+    tabletControlValue = (tabletControlValue + key).slice(0,4);
+  }
+  tabletControlUpdateDisplay();
+  return false;
+}
+
+function tabletControlActivate(){
+  const active = tabletControlIsTouchDevice();
+  document.body.classList.toggle('tabletControlActive', active);
+
+  const input = document.getElementById('answer');
+  if(input && active){
+    input.setAttribute('readonly','readonly');
+    input.setAttribute('inputmode','none');
+    input.tabIndex = -1;
+    input.addEventListener('focus',()=>setTimeout(()=>{try{input.blur();}catch(e){}},0));
+  }
+}
+
+function setupTabletControlV1(){
+  tabletControlActivate();
+  tabletControlUpdateDisplay();
+
+  const layer = document.getElementById('tabletControlLayer');
+  if(!layer || layer.dataset.ready === '1') return;
+  layer.dataset.ready = '1';
+
+  layer.querySelectorAll('button[data-key]').forEach(btn=>{
+    const key = btn.dataset.key;
+    const handler = (e)=>{
+      e.preventDefault();
+      e.stopPropagation();
+      tabletControlPress(key);
+      return false;
+    };
+    btn.onclick = handler;
+    btn.ontouchstart = handler;
+    btn.onpointerdown = handler;
+  });
+}
+
+window.addEventListener('DOMContentLoaded', setupTabletControlV1);
+window.addEventListener('resize', tabletControlActivate);
+setTimeout(setupTabletControlV1, 250);
+
+setupTabletControlV1();
 loadDifficultySettings();updateDifficultyPreview();}catch(e){console.warn('difficulty init',e);}
 });
 
@@ -2174,14 +2396,28 @@ function closeAbout(){
   <div id="feedback"></div><div id="bossMeteorLabel">ยิงอุกกาบาต!</div>
   <div id="pilotPopup"><div id="pilotPopupMain"></div><div class="sub">โปรดเข้าประจำสถานี</div></div>
   <div id="answerWrap"><input id="answer" placeholder="คำตอบ" inputmode="numeric" pattern="[0-9]*"><div class="small" id="answerHintText">กด Enter เพื่อยิง</div></div>
-  <div id="tabletKeypad" aria-label="แป้นตอบคำถามบนแท็บเล็ต">
-    <button type="button" data-key="1" onclick="return oegKeypadPress('1')">1</button><button type="button" data-key="2" onclick="return oegKeypadPress('2')">2</button><button type="button" data-key="3" onclick="return oegKeypadPress('3')">3</button>
-    <button type="button" data-key="4" onclick="return oegKeypadPress('4')">4</button><button type="button" data-key="5" onclick="return oegKeypadPress('5')">5</button><button type="button" data-key="6" onclick="return oegKeypadPress('6')">6</button>
-    <button type="button" data-key="7" onclick="return oegKeypadPress('7')">7</button><button type="button" data-key="8" onclick="return oegKeypadPress('8')">8</button><button type="button" data-key="9" onclick="return oegKeypadPress('9')">9</button>
-    <button type="button" data-key="back" onclick="return oegKeypadPress('back')">⌫</button><button type="button" data-key="0" onclick="return oegKeypadPress('0')">0</button><button type="button" data-key="enter" onclick="return oegKeypadPress('enter')">ยิง</button>
-  </div>
   <div id="combo">🔥 Combo x0<div id="comboRank"></div></div>
 </div>
+</div>
+
+
+<!-- ===== TABLET CONTROL VER. 1.0 ===== -->
+<div id="tabletControlLayer" aria-label="Tablet answer controls">
+  <div id="tabletAnswerDisplay" aria-live="polite">คำตอบ</div>
+  <div id="tabletKeypadV1">
+    <button type="button" data-key="1">1</button>
+    <button type="button" data-key="2">2</button>
+    <button type="button" data-key="3">3</button>
+    <button type="button" data-key="4">4</button>
+    <button type="button" data-key="5">5</button>
+    <button type="button" data-key="6">6</button>
+    <button type="button" data-key="7">7</button>
+    <button type="button" data-key="8">8</button>
+    <button type="button" data-key="9">9</button>
+    <button type="button" data-key="back">⌫</button>
+    <button type="button" data-key="0">0</button>
+    <button type="button" data-key="enter">ยิง</button>
+  </div>
 </div>
 
 <div id="hintSelect">
@@ -2580,7 +2816,7 @@ function startAttack(){
     }
   },1000);
   prepTimer=thinkTick;
-  setTimeout(()=>{ if(!document.body.classList.contains('tabletKeyboardSafe')) $('answer').focus(); },50);
+  setTimeout(()=>{ if(!document.body.classList.contains('tabletControlActive')) $('answer').focus(); },50);
 }
 function beginMeteorAttack(){
   if(phase==='ended') return;
@@ -2959,7 +3195,7 @@ function newBossQuestion(){
     $('question').innerText=a+' × '+b+' = ?';
     $('timer').innerText='👾 Boss HP';
     $('pilotLine').innerText=currentStudent?`🧑‍🚀 #${currentStudent.no} ${currentStudent.name||''}`:'';
-    setTimeout(()=>{ if(!document.body.classList.contains('tabletKeyboardSafe')) $('answer').focus(); },80);
+    setTimeout(()=>{ if(!document.body.classList.contains('tabletControlActive')) $('answer').focus(); },80);
   },1850);
 }
 function startBossMeteorLoop(){
