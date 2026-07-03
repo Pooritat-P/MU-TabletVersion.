@@ -1875,390 +1875,82 @@ body.tabletGameControls #tabletControlLayer,
 body.tabletGameControls #tabletControlLayer *{pointer-events:auto!important}
 body:not(.tabletGameControls) #tabletControlLayer{display:none!important;pointer-events:none!important}
 
+
+/* ===== TABLET CONTROL V2E: WORKING BOTTOM BAR =====
+   Fixes two points:
+   1) Real clickable/touchable buttons.
+   2) Removes answer display from bottom keyboard bar.
+*/
+#tabletAnswerDisplay{display:none!important;}
+#tabletControlLayer{
+  display:none!important;
+  position:fixed!important;
+  left:0!important;
+  right:0!important;
+  bottom:0!important;
+  z-index:2147483647!important;
+  width:100vw!important;
+  box-sizing:border-box!important;
+  padding:5px 8px calc(5px + env(safe-area-inset-bottom,0px))!important;
+  background:rgba(0,10,25,.92)!important;
+  border-top:2px solid rgba(117,234,255,.58)!important;
+  pointer-events:auto!important;
+  touch-action:manipulation!important;
+}
+body.tabletControlBarActive #tabletControlLayer{
+  display:block!important;
+}
+#tabletControlLayer,
+#tabletControlLayer *{
+  pointer-events:auto!important;
+}
+#tabletKeypadV1{
+  width:100%!important;
+  display:grid!important;
+  grid-template-columns:repeat(12,minmax(0,1fr))!important;
+  gap:5px!important;
+}
+#tabletKeypadV1 button{
+  pointer-events:auto!important;
+  min-height:40px!important;
+  padding:4px 0!important;
+  border-radius:9px!important;
+  border:0!important;
+  background:linear-gradient(180deg,#2fc7ff,#1684c4)!important;
+  color:#02101c!important;
+  font-weight:bold!important;
+  font-size:19px!important;
+  line-height:1!important;
+  touch-action:manipulation!important;
+  -webkit-tap-highlight-color:transparent!important;
+  cursor:pointer!important;
+}
+#tabletKeypadV1 button[data-key="enter"]{
+  background:linear-gradient(180deg,#ffd966,#f59e0b)!important;
+  font-size:15px!important;
+}
+#tabletKeypadV1 button[data-key="back"]{
+  background:linear-gradient(180deg,#9fb7c9,#51687a)!important;
+  color:#fff!important;
+}
+/* Keep the original answer box under the ship visible. */
+body.tabletControlBarActive #answerWrap{
+  display:block!important;
+}
+/* Prevent the real tablet keyboard from appearing when touching the original answer box. */
+body.tabletControlBarActive #answer{
+  pointer-events:none!important;
+  caret-color:transparent!important;
+}
+@media(max-width:900px){
+  #tabletControlLayer{padding-left:4px!important;padding-right:4px!important;}
+  #tabletKeypadV1{gap:3px!important;}
+  #tabletKeypadV1 button{min-height:38px!important;font-size:16px!important;border-radius:7px!important;}
+  #tabletKeypadV1 button[data-key="enter"]{font-size:13px!important;}
+}
+
 </style>
-<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js">
-window.addEventListener('load',()=>{try{setMiniShipIcon();}catch(e){};
-  try{
-// ===== PHASE 1 CLEAN: KEYBOARD SAFE AREA ONLY =====
-function oegIsTabletLikeDevice(){
-  return (window.matchMedia && window.matchMedia('(pointer: coarse)').matches)
-    || /iPad|Android|Tablet|Mobile/i.test(navigator.userAgent)
-    || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-}
-function oegSubmitAnswerViaExistingListener(){
-  const input = document.getElementById('answer');
-  if(!input) return;
-  const ev = new KeyboardEvent('keydown', {key:'Enter', code:'Enter', bubbles:true});
-  input.dispatchEvent(ev);
-}
-function setupKeyboardSafeArea(){
-  const input = document.getElementById('answer');
-  const keypad = document.getElementById('tabletKeypad');
-  if(!input || !keypad) return;
-
-  const tablet = oegIsTabletLikeDevice();
-  document.body.classList.toggle('tabletKeyboardSafe', tablet);
-
-  if(tablet){
-    input.setAttribute('readonly','readonly');
-    input.setAttribute('inputmode','none');
-    input.setAttribute('autocomplete','off');
-    input.setAttribute('autocorrect','off');
-    input.setAttribute('autocapitalize','off');
-    input.setAttribute('spellcheck','false');
-
-    input.addEventListener('focus', ()=>{
-      setTimeout(()=>{ try{ input.blur(); }catch(e){} }, 0);
-    });
-  }
-
-  keypad.querySelectorAll('button[data-key]').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      const key = btn.dataset.key;
-      if(key === 'back'){
-        input.value = input.value.slice(0,-1);
-      }else if(key === 'enter'){
-        oegSubmitAnswerViaExistingListener();
-      }else{
-        input.value = (input.value + key).slice(0,4);
-      }
-    });
-  });
-}
-
-setupKeyboardSafeArea();
-
-// ===== PHASE 1B FORCE: NO VIRTUAL KEYBOARD ON TABLET =====
-function oegForceTabletKeyboardSafe(){
-  const input = document.getElementById('answer');
-  const keypad = document.getElementById('tabletKeypad');
-  if(!input || !keypad) return;
-
-  const coarse = !!(window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
-  const touch = (navigator.maxTouchPoints && navigator.maxTouchPoints > 0) || ('ontouchstart' in window);
-  const ipad = /iPad/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-  const androidTablet = /Android/i.test(navigator.userAgent) && !/Mobile/i.test(navigator.userAgent);
-  const tabletSize = Math.min(window.innerWidth, window.innerHeight) >= 600 && Math.max(window.innerWidth, window.innerHeight) <= 1400;
-  const tablet = coarse || touch || ipad || androidTablet || tabletSize;
-
-  document.body.classList.toggle('tabletKeyboardSafe', tablet);
-
-  if(tablet){
-    input.setAttribute('readonly','readonly');
-    input.setAttribute('inputmode','none');
-    input.setAttribute('autocomplete','off');
-    input.setAttribute('autocorrect','off');
-    input.setAttribute('autocapitalize','off');
-    input.setAttribute('spellcheck','false');
-    input.tabIndex = -1;
-
-    const blockFocus = (e)=>{
-      e.preventDefault();
-      e.stopPropagation();
-      try{ input.blur(); }catch(err){}
-      return false;
-    };
-
-    ['touchstart','touchend','pointerdown','mousedown','click','focus'].forEach(type=>{
-      input.addEventListener(type, blockFocus, {passive:false});
-    });
-
-    document.addEventListener('touchstart', (e)=>{
-      if(e.target === input){
-        e.preventDefault();
-        try{ input.blur(); }catch(err){}
-      }
-    }, {passive:false, capture:true});
-  }
-}
-function oegEnsureKeypadButtonsWork(){
-  const input = document.getElementById('answer');
-  const keypad = document.getElementById('tabletKeypad');
-  if(!input || !keypad || keypad.dataset.phase1bReady === '1') return;
-  keypad.dataset.phase1bReady = '1';
-  keypad.querySelectorAll('button[data-key]').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      const key = btn.dataset.key;
-      if(key === 'back'){
-        input.value = input.value.slice(0,-1);
-      }else if(key === 'enter'){
-        const ev = new KeyboardEvent('keydown', {key:'Enter', code:'Enter', bubbles:true});
-        input.dispatchEvent(ev);
-      }else{
-        input.value = (input.value + key).slice(0,4);
-      }
-    });
-  });
-}
-window.addEventListener('DOMContentLoaded', ()=>{oegForceTabletKeyboardSafe();oegEnsureKeypadButtonsWork();});
-window.addEventListener('resize', oegForceTabletKeyboardSafe);
-setTimeout(()=>{oegForceTabletKeyboardSafe();oegEnsureKeypadButtonsWork();}, 250);
-
-oegForceTabletKeyboardSafe();
-oegEnsureKeypadButtonsWork();
-
-// ===== PHASE 1D: LEFT SHIP KEYPAD FUNCTION PATCH =====
-function setupLeftShipKeypad(){
-  const input = document.getElementById('answer');
-  const keypad = document.getElementById('tabletKeypad');
-  if(!input || !keypad || keypad.dataset.leftShipReady === '1') return;
-  keypad.dataset.leftShipReady = '1';
-
-  // On touch devices, prevent virtual keyboard by making answer display-only.
-  const touch = (navigator.maxTouchPoints && navigator.maxTouchPoints > 0) || ('ontouchstart' in window);
-  const coarse = !!(window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
-  const ipad = /iPad/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-  if(touch || coarse || ipad){
-    document.body.classList.add('tabletKeyboardSafe');
-    input.setAttribute('readonly','readonly');
-    input.setAttribute('inputmode','none');
-    input.tabIndex = -1;
-    input.addEventListener('focus',()=>{setTimeout(()=>{try{input.blur();}catch(e){}},0);});
-  }
-
-  keypad.querySelectorAll('button[data-key]').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      const key = btn.dataset.key;
-      if(key === 'back'){
-        input.value = input.value.slice(0,-1);
-      }else if(key === 'clear'){
-        input.value = '';
-      }else if(key === 'enter'){
-        const ev = new KeyboardEvent('keydown', {key:'Enter', code:'Enter', bubbles:true});
-        input.dispatchEvent(ev);
-      }else{
-        input.value = (input.value + key).slice(0,4);
-      }
-    });
-  });
-}
-window.addEventListener('DOMContentLoaded', setupLeftShipKeypad);
-setTimeout(setupLeftShipKeypad, 250);
-
-setupLeftShipKeypad();
-
-// ===== PHASE 1E: KEYPAD TOUCH FIX =====
-let oegKeypadLastPressTime = 0;
-function oegKeypadPress(key){
-  const now = Date.now();
-  // Prevent double fire from touch + click.
-  if(now - oegKeypadLastPressTime < 120) return false;
-  oegKeypadLastPressTime = now;
-
-  const input = document.getElementById('answer');
-  if(!input) return false;
-
-  if(key === 'back'){
-    input.value = input.value.slice(0,-1);
-  }else if(key === 'clear'){
-    input.value = '';
-  }else if(key === 'enter'){
-    const ev = new KeyboardEvent('keydown', {key:'Enter', code:'Enter', bubbles:true, cancelable:true});
-    input.dispatchEvent(ev);
-  }else{
-    input.value = (input.value + key).slice(0,4);
-  }
-  return false;
-}
-
-function setupKeypadTouchFix(){
-  const keypad = document.getElementById('tabletKeypad');
-  if(!keypad || keypad.dataset.touchFixReady === '1') return;
-  keypad.dataset.touchFixReady = '1';
-
-  keypad.querySelectorAll('button[data-key]').forEach(btn=>{
-    const key = btn.dataset.key;
-    btn.addEventListener('touchstart', (e)=>{
-      e.preventDefault();
-      e.stopPropagation();
-      oegKeypadPress(key);
-    }, {passive:false});
-
-    btn.addEventListener('pointerdown', (e)=>{
-      // Pointer event is the most reliable on many Android tablets.
-      e.preventDefault();
-      e.stopPropagation();
-      oegKeypadPress(key);
-    }, {passive:false});
-  });
-}
-window.addEventListener('DOMContentLoaded', setupKeypadTouchFix);
-setTimeout(setupKeypadTouchFix, 250);
-
-setupKeypadTouchFix();
-
-// ===== PHASE 1F: COMPACT REAL KEYPAD DIRECT SUBMIT =====
-function oegSubmitAnswerDirect(raw){
-  raw = String(raw || '').trim();
-  const input = document.getElementById('answer');
-  if(raw === '') return false;
-
-  const v = parseInt(raw);
-  const answerable = !['setup','ended','emergency','recovered'].includes(phase);
-
-  if(bossMode && bossMeteorActive && v === bossMeteorAnswer){
-    if(input) input.value = '';
-    shootBossMeteor();
-    return true;
-  }
-
-  if(canSubmit && answerable && v === ans && (!bossMode || (!bossMeteorActive && bossPhase === 'BOSS'))){
-    if(input) input.value = '';
-    correctNormal();
-    return true;
-  }
-
-  if(answerable && !Number.isNaN(v)){
-    registerWrongAttempt();
-  }
-
-  if(input) input.value = '';
-  return true;
-}
-
-// Override keypad press with direct answer submission.
-function oegKeypadPress(key){
-  const input = document.getElementById('answer');
-  if(!input) return false;
-
-  if(key === 'back'){
-    input.value = input.value.slice(0,-1);
-  }else if(key === 'clear'){
-    input.value = '';
-  }else if(key === 'enter'){
-    oegSubmitAnswerDirect(input.value);
-  }else{
-    input.value = (input.value + key).slice(0,4);
-  }
-  return false;
-}
-
-function setupKeypadRealTouch(){
-  const keypad = document.getElementById('tabletKeypad');
-  if(!keypad || keypad.dataset.realTouchReady === '1') return;
-  keypad.dataset.realTouchReady = '1';
-
-  keypad.querySelectorAll('button[data-key]').forEach(btn=>{
-    const key = btn.dataset.key;
-    const press = (e)=>{
-      e.preventDefault();
-      e.stopPropagation();
-      oegKeypadPress(key);
-      return false;
-    };
-    btn.onclick = press;
-    btn.ontouchstart = press;
-    btn.onpointerdown = press;
-  });
-}
-window.addEventListener('DOMContentLoaded', setupKeypadRealTouch);
-setTimeout(setupKeypadRealTouch, 250);
-
-setupKeypadRealTouch();
-
-
-
-setupTabletControlV1();
-
-setupTabletControlV2();
-// TABLET CONTROL V2D - ONE CLEAN TOUCH PIPELINE
-let tabletV2DValue = '';
-
-function tabletV2DGameActive(){
-  const g=document.getElementById('gameScreen');
-  if(!g || !g.classList.contains('active')) return false;
-  // Any active screen/modal outside gameplay (About/setup/end) hides controls.
-  const about=document.getElementById('aboutScreen') || document.getElementById('about');
-  if(about && (about.classList.contains('active') || getComputedStyle(about).display==='block')) return false;
-  return true;
-}
-function tabletV2DSync(){
-  document.body.classList.toggle('tabletGameControls',tabletV2DGameActive());
-}
-function tabletV2DRender(){
-  const d=document.getElementById('tabletAnswerDisplay');
-  const input=document.getElementById('answer');
-  if(d){
-    d.textContent=tabletV2DValue || 'คำตอบ';
-    d.classList.toggle('empty',!tabletV2DValue);
-  }
-  if(input) input.value=tabletV2DValue;
-}
-function tabletV2DSubmit(){
-  const raw=tabletV2DValue.trim();
-  if(!raw) return;
-  const v=parseInt(raw,10);
-  const answerable=!['setup','ended','emergency','recovered'].includes(phase);
-  tabletV2DValue='';
-  tabletV2DRender();
-
-  if(bossMode && bossMeteorActive && v===bossMeteorAnswer){shootBossMeteor();return}
-  if(canSubmit && answerable && v===ans && (!bossMode || (!bossMeteorActive && bossPhase==='BOSS'))){correctNormal();return}
-  if(answerable && !Number.isNaN(v)) registerWrongAttempt();
-}
-function tabletV2DPress(key){
-  if(key==='back') tabletV2DValue=tabletV2DValue.slice(0,-1);
-  else if(key==='enter'){tabletV2DSubmit();return}
-  else tabletV2DValue=(tabletV2DValue+key).slice(0,4);
-  tabletV2DRender();
-}
-function setupTabletV2D(){
-  const layer=document.getElementById('tabletControlLayer');
-  if(!layer || layer.dataset.v2dReady==='1') return;
-  layer.dataset.v2dReady='1';
-
-  // Single delegated pointerdown listener. No click/touchstart duplicates.
-  layer.addEventListener('pointerdown',function(e){
-    const btn=e.target.closest('button[data-key]');
-    if(!btn || !layer.contains(btn)) return;
-    e.preventDefault();
-    e.stopImmediatePropagation();
-    tabletV2DPress(btn.dataset.key);
-  },true);
-
-  // Safari/iPad fallback only when PointerEvent is unavailable.
-  if(!window.PointerEvent){
-    layer.addEventListener('touchstart',function(e){
-      const btn=e.target.closest('button[data-key]');
-      if(!btn || !layer.contains(btn)) return;
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      tabletV2DPress(btn.dataset.key);
-    },{capture:true,passive:false});
-  }
-
-  const input=document.getElementById('answer');
-  if(input){
-    input.setAttribute('readonly','readonly');
-    input.setAttribute('inputmode','none');
-  }
-
-  new MutationObserver(tabletV2DSync).observe(document.body,{subtree:true,attributes:true,attributeFilter:['class','style']});
-  tabletV2DRender();
-  tabletV2DSync();
-}
-window.addEventListener('DOMContentLoaded',setupTabletV2D);
-window.addEventListener('resize',tabletV2DSync);
-window.addEventListener('orientationchange',tabletV2DSync);
-setTimeout(setupTabletV2D,100);
-
-setupTabletV2D();
-loadDifficultySettings();updateDifficultyPreview();}catch(e){console.warn('difficulty init',e);}
-});
-
-// ===== COMPLETE EDITION HARD ABOUT OVERRIDE v3 =====
-function openAbout(){
-  const ov=document.getElementById('aboutOverlay');
-  if(ov){ ov.style.display='flex'; }
-}
-function closeAbout(){
-  const ov=document.getElementById('aboutOverlay');
-  if(ov){ ov.style.display='none'; }
-}
-
-
-
-</script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 </head>
 <body>
 <audio id="bossPhaseSfx" src="assets/audio/bossPhaseSfx.mp3" preload="auto"></audio>
@@ -2412,9 +2104,8 @@ function closeAbout(){
 
 <!-- ===== TABLET CONTROL VER. 2.0 : BOTTOM 12-BUTTON BAR ===== -->
 <div id="tabletControlLayer" aria-label="Tablet answer controls">
-  <div id="tabletAnswerDisplay" class="empty" aria-live="polite">คำตอบ</div>
   <div id="tabletKeypadV1">
-    <button type="button" data-key="1">1</button><button type="button" data-key="2">2</button><button type="button" data-key="3">3</button><button type="button" data-key="4">4</button><button type="button" data-key="5">5</button><button type="button" data-key="6">6</button><button type="button" data-key="7">7</button><button type="button" data-key="8">8</button><button type="button" data-key="9">9</button><button type="button" data-key="0">0</button><button type="button" data-key="back">⌫</button><button type="button" data-key="enter">ยิง</button>
+    <button type="button" data-key="1" onclick="return tabletControlBarPress('1')">1</button><button type="button" data-key="2" onclick="return tabletControlBarPress('2')">2</button><button type="button" data-key="3" onclick="return tabletControlBarPress('3')">3</button><button type="button" data-key="4" onclick="return tabletControlBarPress('4')">4</button><button type="button" data-key="5" onclick="return tabletControlBarPress('5')">5</button><button type="button" data-key="6" onclick="return tabletControlBarPress('6')">6</button><button type="button" data-key="7" onclick="return tabletControlBarPress('7')">7</button><button type="button" data-key="8" onclick="return tabletControlBarPress('8')">8</button><button type="button" data-key="9" onclick="return tabletControlBarPress('9')">9</button><button type="button" data-key="0" onclick="return tabletControlBarPress('0')">0</button><button type="button" data-key="back" onclick="return tabletControlBarPress('back')">⌫</button><button type="button" data-key="enter" onclick="return tabletControlBarPress('enter')">ยิง</button>
   </div>
 </div>
 
@@ -2459,6 +2150,110 @@ function closeAbout(){
 <div id="report"><div class="modalBox" style="max-width:1120px;margin-top:3vh"><h1>📊 Mission Report</h1><div id="reportStats"></div><div id="reportTable"></div><br><button onclick="backToSetup()">กลับหน้าแรก</button> <button onclick="restartSameClass()">เล่นต่อห้องเดิม</button> <button id="reportNextStageBtn" onclick="goNextStage()">➡️ ไปดาวถัดไป</button></div></div>
 
 <script>
+
+// ===== TABLET CONTROL V2E: WORKING BOTTOM BAR =====
+window.tabletControlBarValue = window.tabletControlBarValue || "";
+
+function tabletControlBarGameActive(){
+  const gameScreen = document.getElementById('gameScreen');
+  if(!gameScreen || !gameScreen.classList.contains('active')) return false;
+
+  const aboutOverlay = document.getElementById('aboutOverlay');
+  if(aboutOverlay && getComputedStyle(aboutOverlay).display !== 'none') return false;
+
+  const pauseOverlay = document.getElementById('pauseOverlay');
+  // Keep controls on pause? no, hide to avoid blocking menu.
+  if(pauseOverlay && getComputedStyle(pauseOverlay).display !== 'none') return false;
+
+  return true;
+}
+
+function tabletControlBarSync(){
+  document.body.classList.toggle('tabletControlBarActive', tabletControlBarGameActive());
+}
+
+function tabletControlBarRender(){
+  const input = document.getElementById('answer');
+  if(input) input.value = window.tabletControlBarValue || '';
+}
+
+function tabletControlBarSubmit(){
+  const raw = String(window.tabletControlBarValue || '').trim();
+  if(raw === '') return false;
+
+  const input = document.getElementById('answer');
+  const v = parseInt(raw, 10);
+  const answerable = !['setup','ended','emergency','recovered'].includes(phase);
+
+  window.tabletControlBarValue = '';
+  if(input) input.value = '';
+
+  if(bossMode && bossMeteorActive && v === bossMeteorAnswer){
+    shootBossMeteor();
+    return true;
+  }
+
+  if(canSubmit && answerable && v === ans && (!bossMode || (!bossMeteorActive && bossPhase === 'BOSS'))){
+    correctNormal();
+    return true;
+  }
+
+  if(answerable && !Number.isNaN(v)){
+    registerWrongAttempt();
+  }
+
+  return true;
+}
+
+window.tabletControlBarPress = function(key){
+  if(key === 'back'){
+    window.tabletControlBarValue = String(window.tabletControlBarValue || '').slice(0,-1);
+  }else if(key === 'enter'){
+    tabletControlBarSubmit();
+    return false;
+  }else{
+    window.tabletControlBarValue = (String(window.tabletControlBarValue || '') + key).slice(0,4);
+  }
+  tabletControlBarRender();
+  return false;
+};
+
+function setupTabletControlBarV2E(){
+  const layer = document.getElementById('tabletControlLayer');
+  const input = document.getElementById('answer');
+  if(input){
+    input.setAttribute('readonly','readonly');
+    input.setAttribute('inputmode','none');
+    input.addEventListener('focus',()=>setTimeout(()=>{try{input.blur();}catch(e){}},0));
+  }
+  if(layer && layer.dataset.v2eReady !== '1'){
+    layer.dataset.v2eReady = '1';
+
+    // Capture-phase event delegation. Works even if old listeners exist.
+    ['pointerdown','touchstart','click'].forEach(type=>{
+      layer.addEventListener(type, function(e){
+        const btn = e.target.closest && e.target.closest('button[data-key]');
+        if(!btn || !layer.contains(btn)) return;
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        window.tabletControlBarPress(btn.dataset.key);
+        return false;
+      }, {capture:true, passive:false});
+    });
+  }
+
+  tabletControlBarRender();
+  tabletControlBarSync();
+}
+
+window.addEventListener('DOMContentLoaded', setupTabletControlBarV2E);
+window.addEventListener('resize', tabletControlBarSync);
+window.addEventListener('orientationchange', tabletControlBarSync);
+setTimeout(setupTabletControlBarV2E, 100);
+setInterval(tabletControlBarSync, 300);
+
+
 let students=[], calledSet=new Set(), currentStudent=null;
 let a=0,b=0,ans=0,combo=0,maxCombo=0,dist=1000,hp=100,shield=0,kills=0,corrects=0,wrongs=0,hints=0,wrongAttempts=0;
 let phase='setup', roundActive=false, paused=false, bossMode=false, bossHp=100;
@@ -2740,7 +2535,7 @@ function renderStudents(){
 function markAllPresent(){students.forEach(s=>s.status='present');renderStudents()}
 function markAllAbsent(){students.forEach(s=>s.status='absent');renderStudents()}
 function resetCalled(){calledSet.clear();students.forEach(s=>s.called=0);renderStudents()}
-function startMission(){saveDifficultySettings();if(!students.length)generateQuick();applyPlanetAssets();document.body.style.overflow='hidden';$('setup').classList.remove('active');$('gameScreen').classList.add('active');$('shipLabel').innerText=$('shipName').value||'Math Voyager';if(!soundOn){soundOn=true;$('soundBtn').innerText='🔊 Sound';initAudio();startBgm();}if(currentPlanetId==='water' && !localStorage.getItem('mathUniverseCampaignStarted')){resetCampaignCarry();combo=0;}else{combo=campaignCombo||combo||0;} maxCombo=Math.max(maxCombo,combo); shield=campaignShield;dist=1000;hp=100;shield=campaignShield;kills=0;corrects=0;wrongs=0;wrongAttempts=0;hints=0;bossMode=false;bossHp=100;stopBossMeteor();updateUI();if(soundOn)startBgm();newRound()}
+function startMission(){setTimeout(tabletControlBarSync,0);saveDifficultySettings();if(!students.length)generateQuick();applyPlanetAssets();document.body.style.overflow='hidden';$('setup').classList.remove('active');$('gameScreen').classList.add('active');$('shipLabel').innerText=$('shipName').value||'Math Voyager';if(!soundOn){soundOn=true;$('soundBtn').innerText='🔊 Sound';initAudio();startBgm();}if(currentPlanetId==='water' && !localStorage.getItem('mathUniverseCampaignStarted')){resetCampaignCarry();combo=0;}else{combo=campaignCombo||combo||0;} maxCombo=Math.max(maxCombo,combo); shield=campaignShield;dist=1000;hp=100;shield=campaignShield;kills=0;corrects=0;wrongs=0;wrongAttempts=0;hints=0;bossMode=false;bossHp=100;stopBossMeteor();updateUI();if(soundOn)startBgm();newRound()}
 
 function setMiniShipIcon(){
   try{
@@ -3522,8 +3317,8 @@ $('fileInput').addEventListener('change',e=>{
 const drop=$('drop');drop.addEventListener('dragover',e=>{e.preventDefault();drop.classList.add('drag')});drop.addEventListener('dragleave',()=>drop.classList.remove('drag'));drop.addEventListener('drop',e=>{e.preventDefault();drop.classList.remove('drag');let f=e.dataTransfer.files[0];if(!f)return;let r=new FileReader();r.onload=()=>parseCSV(r.result);r.readAsText(f,'utf-8')});
 generateQuick();
 
-function openAbout(){const ov=$('aboutOverlay'); if(ov) ov.style.display='flex';}
-function closeAbout(){const ov=$('aboutOverlay'); if(ov) ov.style.display='none';}
+function openAbout(){document.body.classList.remove('tabletControlBarActive');const ov=$('aboutOverlay'); if(ov) ov.style.display='flex';}
+function closeAbout(){setTimeout(tabletControlBarSync,0);const ov=$('aboutOverlay'); if(ov) ov.style.display='none';}
 const APP_SIGNATURE = {
   app:'Math Universe',
   version:'Math Universe Complete Edition',
