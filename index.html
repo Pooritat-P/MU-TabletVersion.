@@ -1850,6 +1850,21 @@ body.tabletControlActive #tabletControlLayer{display:flex!important;align-items:
 #tabletKeypadV1 button[data-key="back"]{background:linear-gradient(180deg,#9fb7c9,#51687a)!important;color:#fff!important}
 body.tabletControlActive #answerWrap{display:none!important}
 @media(max-width:900px){#tabletControlLayer{gap:4px!important;padding-left:4px!important;padding-right:4px!important}#tabletAnswerDisplay{flex-basis:66px!important;font-size:16px!important}#tabletKeypadV1{gap:3px!important}#tabletKeypadV1 button{min-height:38px!important;font-size:16px!important}#tabletKeypadV1 button[data-key="enter"]{font-size:13px!important}}
+/* TABLET CONTROL V2C FORCE VISIBLE */
+#gameScreen.active ~ #tabletControlLayer,
+body.tabletControlActive #tabletControlLayer{
+  display:flex!important;
+  align-items:center!important;
+  gap:7px!important;
+}
+#tabletControlLayer{
+  z-index:2147483647!important;
+  pointer-events:auto!important;
+}
+#tabletControlLayer *{
+  pointer-events:auto!important;
+}
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js">
 window.addEventListener('load',()=>{try{setMiniShipIcon();}catch(e){};
@@ -2285,6 +2300,14 @@ function closeAbout(){
   if(ov){ ov.style.display='none'; }
 }
 
+// TABLET CONTROL V2C FORCE CLASS FALLBACK
+function tabletControlForceShow(){
+  const gs=document.getElementById('gameScreen');
+  if(gs && gs.classList.contains('active')) document.body.classList.add('tabletControlActive');
+}
+document.addEventListener('click',()=>setTimeout(tabletControlForceShow,50),true);
+setInterval(tabletControlForceShow,300);
+
 </script>
 </head>
 <body>
@@ -2441,7 +2464,7 @@ function closeAbout(){
 <div id="tabletControlLayer" aria-label="Tablet answer controls">
   <div id="tabletAnswerDisplay" class="empty" aria-live="polite">คำตอบ</div>
   <div id="tabletKeypadV1">
-    <button type="button" data-key="1">1</button><button type="button" data-key="2">2</button><button type="button" data-key="3">3</button><button type="button" data-key="4">4</button><button type="button" data-key="5">5</button><button type="button" data-key="6">6</button><button type="button" data-key="7">7</button><button type="button" data-key="8">8</button><button type="button" data-key="9">9</button><button type="button" data-key="0">0</button><button type="button" data-key="back">⌫</button><button type="button" data-key="enter">ยิง</button>
+    <button type="button" data-key="1" onclick="return tabletControlPress('1')">1</button><button type="button" data-key="2" onclick="return tabletControlPress('2')">2</button><button type="button" data-key="3" onclick="return tabletControlPress('3')">3</button><button type="button" data-key="4" onclick="return tabletControlPress('4')">4</button><button type="button" data-key="5" onclick="return tabletControlPress('5')">5</button><button type="button" data-key="6" onclick="return tabletControlPress('6')">6</button><button type="button" data-key="7" onclick="return tabletControlPress('7')">7</button><button type="button" data-key="8" onclick="return tabletControlPress('8')">8</button><button type="button" data-key="9" onclick="return tabletControlPress('9')">9</button><button type="button" data-key="0" onclick="return tabletControlPress('0')">0</button><button type="button" data-key="back" onclick="return tabletControlPress('back')">⌫</button><button type="button" data-key="enter" onclick="return tabletControlPress('enter')">ยิง</button>
   </div>
 </div>
 
@@ -2767,7 +2790,7 @@ function renderStudents(){
 function markAllPresent(){students.forEach(s=>s.status='present');renderStudents()}
 function markAllAbsent(){students.forEach(s=>s.status='absent');renderStudents()}
 function resetCalled(){calledSet.clear();students.forEach(s=>s.called=0);renderStudents()}
-function startMission(){saveDifficultySettings();if(!students.length)generateQuick();applyPlanetAssets();document.body.style.overflow='hidden';$('setup').classList.remove('active');$('gameScreen').classList.add('active');$('shipLabel').innerText=$('shipName').value||'Math Voyager';if(!soundOn){soundOn=true;$('soundBtn').innerText='🔊 Sound';initAudio();startBgm();}if(currentPlanetId==='water' && !localStorage.getItem('mathUniverseCampaignStarted')){resetCampaignCarry();combo=0;}else{combo=campaignCombo||combo||0;} maxCombo=Math.max(maxCombo,combo); shield=campaignShield;dist=1000;hp=100;shield=campaignShield;kills=0;corrects=0;wrongs=0;wrongAttempts=0;hints=0;bossMode=false;bossHp=100;stopBossMeteor();updateUI();if(soundOn)startBgm();newRound()}
+function startMission(){document.body.classList.add('tabletControlActive');saveDifficultySettings();if(!students.length)generateQuick();applyPlanetAssets();document.body.style.overflow='hidden';$('setup').classList.remove('active');$('gameScreen').classList.add('active');$('shipLabel').innerText=$('shipName').value||'Math Voyager';if(!soundOn){soundOn=true;$('soundBtn').innerText='🔊 Sound';initAudio();startBgm();}if(currentPlanetId==='water' && !localStorage.getItem('mathUniverseCampaignStarted')){resetCampaignCarry();combo=0;}else{combo=campaignCombo||combo||0;} maxCombo=Math.max(maxCombo,combo); shield=campaignShield;dist=1000;hp=100;shield=campaignShield;kills=0;corrects=0;wrongs=0;wrongAttempts=0;hints=0;bossMode=false;bossHp=100;stopBossMeteor();updateUI();if(soundOn)startBgm();newRound()}
 
 function setMiniShipIcon(){
   try{
@@ -3435,10 +3458,10 @@ function closeEndToReport(){
   renderReportTable();
 }
 function renderReportTable(){let html='<table><tr><th>เลขที่</th><th>ชื่อ</th><th>สถานะ</th><th>ถูกเรียก</th><th>ถูก</th><th>ผิด</th></tr>';students.forEach(s=>html+=`<tr><td>${s.no}</td><td>${s.name||''}</td><td>${s.status}</td><td>${s.called}</td><td>${s.correct}</td><td>${s.wrong}</td></tr>`);$('reportTable').innerHTML=html+'</table>'}
-function backToSetup(){document.body.style.overflowY='auto';document.body.style.overflowX='hidden';$('report').style.display='none';$('gameScreen').classList.remove('active');$('setup').classList.add('active');applyPlanetAssets();renderPlanetMap()}
+function backToSetup(){document.body.classList.remove('tabletControlActive');document.body.style.overflowY='auto';document.body.style.overflowX='hidden';$('report').style.display='none';$('gameScreen').classList.remove('active');$('setup').classList.add('active');applyPlanetAssets();renderPlanetMap()}
 function restartSameClass(){$('report').style.display='none';startMission()}
 
-function confirmPauseBackHome(){
+function confirmPauseBackHome(){document.body.classList.remove('tabletControlActive');
   const ok = confirm('กลับหน้าหลัก?\\nความคืบหน้าของด่านปัจจุบันจะหายไป');
   if(!ok) return;
   paused=false;
