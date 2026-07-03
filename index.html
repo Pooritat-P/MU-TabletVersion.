@@ -1949,6 +1949,188 @@ body.tabletControlBarActive #answer{
   #tabletKeypadV1 button[data-key="enter"]{font-size:13px!important;}
 }
 
+
+/* ===== TABLET UI + BOSS INTRO MODAL FIX =====
+   Fix 1: prevent HP / Question / Distance Visual overlap on iPad/tablet landscape.
+   Fix 2: make Planet Reached / Boss Intro modal fit the viewport with scroll and reachable button.
+   Keeps Tablet Control V2F unchanged.
+*/
+
+/* Boss intro modal: always fit inside screen and allow scrolling */
+#summary{
+  overflow-y:auto!important;
+  -webkit-overflow-scrolling:touch!important;
+  padding:10px 0 calc(78px + env(safe-area-inset-bottom,0px))!important;
+}
+#summary .modalBox{
+  width:min(900px,92vw)!important;
+  max-height:calc(100dvh - 105px)!important;
+  overflow-y:auto!important;
+  margin:2vh auto!important;
+  padding:18px!important;
+  box-sizing:border-box!important;
+}
+#summary .modalBox h1{
+  font-size:clamp(32px,5.2vw,52px)!important;
+  margin:8px 0 10px!important;
+}
+#summary #bossIntroImage{
+  width:min(520px,64vw)!important;
+  max-height:38dvh!important;
+  object-fit:contain!important;
+}
+#summary #bossIntroTitle{
+  font-size:clamp(24px,4vw,44px)!important;
+  margin-top:6px!important;
+}
+#summary #bossIntroSub,
+#summary #bossIntroQuote{
+  font-size:clamp(16px,2.4vw,26px)!important;
+  margin:6px 0 10px!important;
+}
+#summary button{
+  position:sticky!important;
+  bottom:0!important;
+  z-index:5!important;
+  margin-top:8px!important;
+}
+
+/* Tablet landscape / 4:3 safe HUD layout */
+@media (pointer:coarse), (max-aspect-ratio: 4/3), (max-width:1180px){
+  #hud{
+    left:12px!important;
+    top:12px!important;
+    width:30vw!important;
+    min-width:260px!important;
+    max-width:420px!important;
+    padding:10px 12px!important;
+    font-size:clamp(16px,2.1vw,24px)!important;
+    line-height:1.35!important;
+    z-index:35!important;
+  }
+  #hud .bar{
+    width:min(190px,16vw)!important;
+  }
+  #aura{
+    top:4px!important;
+    left:32vw!important;
+    width:38vw!important;
+    font-size:clamp(16px,2vw,24px)!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    z-index:34!important;
+  }
+  #question{
+    top:58px!important;
+    left:32vw!important;
+    width:40vw!important;
+    font-size:clamp(46px,7.2vw,78px)!important;
+    line-height:1.05!important;
+    min-height:unset!important;
+    padding:14px 18px!important;
+    box-sizing:border-box!important;
+    border-radius:22px!important;
+    background:rgba(0,0,0,.38)!important;
+    border:2px solid rgba(117,234,255,.65)!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    z-index:32!important;
+  }
+  #timer{
+    top:248px!important;
+    left:36vw!important;
+    width:34vw!important;
+    font-size:clamp(24px,3.2vw,38px)!important;
+    z-index:33!important;
+  }
+  #pilotLine{
+    top:302px!important;
+    left:38vw!important;
+    width:30vw!important;
+    font-size:clamp(18px,2.4vw,28px)!important;
+    z-index:33!important;
+  }
+  #distanceMiniMap{
+    top:112px!important;
+    right:150px!important;
+    width:360px!important;
+    height:90px!important;
+    transform:scale(.72)!important;
+    transform-origin:top right!important;
+    z-index:31!important;
+  }
+  #planetMini{
+    top:108px!important;
+    right:42px!important;
+    width:82px!important;
+    z-index:30!important;
+  }
+  #soundBtn{
+    top:12px!important;
+    right:132px!important;
+    font-size:clamp(14px,2vw,18px)!important;
+    padding:8px 12px!important;
+    z-index:45!important;
+  }
+  #pauseBtn{
+    top:12px!important;
+    right:12px!important;
+    font-size:clamp(14px,2vw,18px)!important;
+    padding:8px 12px!important;
+    z-index:45!important;
+  }
+
+  /* Keep gameplay elements lower than the tablet HUD area */
+  #ship{
+    top:58vh!important;
+  }
+  #enemy{
+    top:60vh!important;
+  }
+}
+
+/* Very short tablet screens */
+@media (max-height:760px) and (pointer:coarse){
+  #summary .modalBox{
+    max-height:calc(100dvh - 88px)!important;
+    margin:1vh auto!important;
+    padding:14px!important;
+  }
+  #summary #bossIntroImage{
+    max-height:31dvh!important;
+    width:min(430px,58vw)!important;
+  }
+  #summary .modalBox h1{
+    font-size:34px!important;
+  }
+  #summary button{
+    font-size:16px!important;
+    padding:8px 12px!important;
+  }
+  #question{
+    top:50px!important;
+    font-size:clamp(40px,6.4vw,64px)!important;
+    padding:10px 14px!important;
+  }
+  #timer{
+    top:205px!important;
+  }
+  #pilotLine{
+    top:250px!important;
+  }
+  #distanceMiniMap{
+    top:96px!important;
+    right:138px!important;
+    transform:scale(.64)!important;
+  }
+  #planetMini{
+    top:92px!important;
+    width:72px!important;
+  }
+}
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 </head>
