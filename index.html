@@ -1876,7 +1876,7 @@ body.tabletGameControls #tabletControlLayer *{pointer-events:auto!important}
 body:not(.tabletGameControls) #tabletControlLayer{display:none!important;pointer-events:none!important}
 
 
-/* ===== TABLET CONTROL V2E: WORKING BOTTOM BAR =====
+/* ===== TABLET CONTROL V2F: SINGLE INPUT FIX =====
    Fixes two points:
    1) Real clickable/touchable buttons.
    2) Removes answer display from bottom keyboard bar.
@@ -2105,7 +2105,7 @@ body.tabletControlBarActive #answer{
 <!-- ===== TABLET CONTROL VER. 2.0 : BOTTOM 12-BUTTON BAR ===== -->
 <div id="tabletControlLayer" aria-label="Tablet answer controls">
   <div id="tabletKeypadV1">
-    <button type="button" data-key="1" onclick="return tabletControlBarPress('1')">1</button><button type="button" data-key="2" onclick="return tabletControlBarPress('2')">2</button><button type="button" data-key="3" onclick="return tabletControlBarPress('3')">3</button><button type="button" data-key="4" onclick="return tabletControlBarPress('4')">4</button><button type="button" data-key="5" onclick="return tabletControlBarPress('5')">5</button><button type="button" data-key="6" onclick="return tabletControlBarPress('6')">6</button><button type="button" data-key="7" onclick="return tabletControlBarPress('7')">7</button><button type="button" data-key="8" onclick="return tabletControlBarPress('8')">8</button><button type="button" data-key="9" onclick="return tabletControlBarPress('9')">9</button><button type="button" data-key="0" onclick="return tabletControlBarPress('0')">0</button><button type="button" data-key="back" onclick="return tabletControlBarPress('back')">⌫</button><button type="button" data-key="enter" onclick="return tabletControlBarPress('enter')">ยิง</button>
+    <button type="button" data-key="1">1</button><button type="button" data-key="2">2</button><button type="button" data-key="3">3</button><button type="button" data-key="4">4</button><button type="button" data-key="5">5</button><button type="button" data-key="6">6</button><button type="button" data-key="7">7</button><button type="button" data-key="8">8</button><button type="button" data-key="9">9</button><button type="button" data-key="0">0</button><button type="button" data-key="back">⌫</button><button type="button" data-key="enter">ยิง</button>
   </div>
 </div>
 
@@ -2151,7 +2151,7 @@ body.tabletControlBarActive #answer{
 
 <script>
 
-// ===== TABLET CONTROL V2E: WORKING BOTTOM BAR =====
+// ===== TABLET CONTROL V2F: SINGLE INPUT FIX =====
 window.tabletControlBarValue = window.tabletControlBarValue || "";
 
 function tabletControlBarGameActive(){
@@ -2226,21 +2226,39 @@ function setupTabletControlBarV2E(){
     input.setAttribute('inputmode','none');
     input.addEventListener('focus',()=>setTimeout(()=>{try{input.blur();}catch(e){}},0));
   }
-  if(layer && layer.dataset.v2eReady !== '1'){
-    layer.dataset.v2eReady = '1';
 
-    // Capture-phase event delegation. Works even if old listeners exist.
-    ['pointerdown','touchstart','click'].forEach(type=>{
-      layer.addEventListener(type, function(e){
-        const btn = e.target.closest && e.target.closest('button[data-key]');
-        if(!btn || !layer.contains(btn)) return;
-        e.preventDefault();
-        e.stopPropagation();
-        e.stopImmediatePropagation();
-        window.tabletControlBarPress(btn.dataset.key);
-        return false;
-      }, {capture:true, passive:false});
-    });
+  if(layer && layer.dataset.v2fReady !== '1'){
+    layer.dataset.v2fReady = '1';
+    let lastKey = '';
+    let lastPressAt = 0;
+
+    const handlePress = function(e){
+      const btn = e.target.closest && e.target.closest('button[data-key]');
+      if(!btn || !layer.contains(btn)) return;
+
+      e.preventDefault();
+      e.stopPropagation();
+      e.stopImmediatePropagation();
+
+      const key = btn.dataset.key;
+      const now = Date.now();
+
+      // iPad/Safari may emit pointer/touch/click for the same physical tap.
+      // Accept only one event for the same key within 300 ms.
+      if(key === lastKey && now - lastPressAt < 300) return false;
+      lastKey = key;
+      lastPressAt = now;
+
+      window.tabletControlBarPress(key);
+      return false;
+    };
+
+    if(window.PointerEvent){
+      layer.addEventListener('pointerdown', handlePress, {capture:true, passive:false});
+    }else{
+      layer.addEventListener('touchstart', handlePress, {capture:true, passive:false});
+      layer.addEventListener('click', handlePress, {capture:true, passive:false});
+    }
   }
 
   tabletControlBarRender();
