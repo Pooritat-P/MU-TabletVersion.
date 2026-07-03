@@ -1839,6 +1839,17 @@ body.tabletControlActive #answer{
   }
 }
 
+/* TABLET CONTROL V2 BOTTOM BAR */
+#tabletControlLayer{display:none!important;position:fixed!important;left:0!important;right:0!important;bottom:0!important;z-index:2147483000!important;width:100vw!important;box-sizing:border-box!important;padding:5px 8px calc(5px + env(safe-area-inset-bottom,0px))!important;background:rgba(0,10,25,.9)!important;border-top:2px solid rgba(117,234,255,.55)!important;pointer-events:auto!important}
+body.tabletControlActive #tabletControlLayer{display:flex!important;align-items:center!important;gap:7px!important}
+#tabletAnswerDisplay{flex:0 0 92px!important;min-height:38px!important;margin:0!important;display:flex!important;align-items:center!important;justify-content:center!important;border-radius:9px!important;background:rgba(0,0,0,.72)!important;border:2px solid rgba(117,234,255,.78)!important;color:#fff!important;font-size:20px!important;font-weight:bold!important}
+#tabletAnswerDisplay.empty{color:rgba(255,255,255,.48)!important;font-size:14px!important}
+#tabletKeypadV1{flex:1!important;display:grid!important;grid-template-columns:repeat(12,minmax(0,1fr))!important;gap:5px!important}
+#tabletKeypadV1 button{pointer-events:auto!important;min-width:0!important;min-height:40px!important;padding:4px 0!important;border-radius:9px!important;border:0!important;background:linear-gradient(180deg,#2fc7ff,#1684c4)!important;color:#02101c!important;font-weight:bold!important;font-size:19px!important;touch-action:manipulation!important;-webkit-tap-highlight-color:transparent!important}
+#tabletKeypadV1 button[data-key="enter"]{background:linear-gradient(180deg,#ffd966,#f59e0b)!important;font-size:15px!important}
+#tabletKeypadV1 button[data-key="back"]{background:linear-gradient(180deg,#9fb7c9,#51687a)!important;color:#fff!important}
+body.tabletControlActive #answerWrap{display:none!important}
+@media(max-width:900px){#tabletControlLayer{gap:4px!important;padding-left:4px!important;padding-right:4px!important}#tabletAnswerDisplay{flex-basis:66px!important;font-size:16px!important}#tabletKeypadV1{gap:3px!important}#tabletKeypadV1 button{min-height:38px!important;font-size:16px!important}#tabletKeypadV1 button[data-key="enter"]{font-size:13px!important}}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js">
 window.addEventListener('load',()=>{try{setMiniShipIcon();}catch(e){};
@@ -2236,6 +2247,31 @@ window.addEventListener('resize', tabletControlActivate);
 setTimeout(setupTabletControlV1, 250);
 
 setupTabletControlV1();
+// TABLET CONTROL V2 ROBUST VISIBILITY AND TOUCH
+function tabletControlGameIsVisible(){const g=document.getElementById('gameScreen');if(!g)return false;const s=getComputedStyle(g);return s.display!=='none'&&s.visibility!=='hidden'}
+function tabletControlSyncVisibility(){document.body.classList.toggle('tabletControlActive',tabletControlGameIsVisible())}
+function setupTabletControlV2(){
+ tabletControlSyncVisibility();
+ const layer=document.getElementById('tabletControlLayer'); if(!layer)return;
+ if(layer.dataset.v2Ready!=='1'){
+  layer.dataset.v2Ready='1';
+  layer.querySelectorAll('button[data-key]').forEach(btn=>{
+   const key=btn.dataset.key; let lock=false;
+   const press=e=>{if(e){e.preventDefault();e.stopPropagation()}if(lock)return false;lock=true;tabletControlPress(key);setTimeout(()=>lock=false,100);return false};
+   btn.addEventListener('pointerdown',press,{passive:false});
+   btn.addEventListener('touchstart',press,{passive:false});
+   btn.addEventListener('click',press,{passive:false});
+  });
+ }
+ const g=document.getElementById('gameScreen');
+ if(g&&!g.dataset.tabletV2Observed){g.dataset.tabletV2Observed='1';new MutationObserver(tabletControlSyncVisibility).observe(g,{attributes:true,attributeFilter:['style','class','hidden']})}
+}
+window.addEventListener('DOMContentLoaded',setupTabletControlV2);
+window.addEventListener('resize',tabletControlSyncVisibility);
+window.addEventListener('orientationchange',tabletControlSyncVisibility);
+setTimeout(setupTabletControlV2,250);
+setInterval(tabletControlSyncVisibility,500);
+setupTabletControlV2();
 loadDifficultySettings();updateDifficultyPreview();}catch(e){console.warn('difficulty init',e);}
 });
 
@@ -2401,22 +2437,11 @@ function closeAbout(){
 </div>
 
 
-<!-- ===== TABLET CONTROL VER. 1.0 ===== -->
+<!-- ===== TABLET CONTROL VER. 2.0 : BOTTOM 12-BUTTON BAR ===== -->
 <div id="tabletControlLayer" aria-label="Tablet answer controls">
-  <div id="tabletAnswerDisplay" aria-live="polite">คำตอบ</div>
+  <div id="tabletAnswerDisplay" class="empty" aria-live="polite">คำตอบ</div>
   <div id="tabletKeypadV1">
-    <button type="button" data-key="1">1</button>
-    <button type="button" data-key="2">2</button>
-    <button type="button" data-key="3">3</button>
-    <button type="button" data-key="4">4</button>
-    <button type="button" data-key="5">5</button>
-    <button type="button" data-key="6">6</button>
-    <button type="button" data-key="7">7</button>
-    <button type="button" data-key="8">8</button>
-    <button type="button" data-key="9">9</button>
-    <button type="button" data-key="back">⌫</button>
-    <button type="button" data-key="0">0</button>
-    <button type="button" data-key="enter">ยิง</button>
+    <button type="button" data-key="1">1</button><button type="button" data-key="2">2</button><button type="button" data-key="3">3</button><button type="button" data-key="4">4</button><button type="button" data-key="5">5</button><button type="button" data-key="6">6</button><button type="button" data-key="7">7</button><button type="button" data-key="8">8</button><button type="button" data-key="9">9</button><button type="button" data-key="0">0</button><button type="button" data-key="back">⌫</button><button type="button" data-key="enter">ยิง</button>
   </div>
 </div>
 
