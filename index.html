@@ -2310,6 +2310,176 @@ body.tabletControlBarActive #pilotLine{
   }
 }
 
+
+/* ===== TABLET TOPBAR FIX 2 =====
+   User feedback:
+   1) Swap Distance area with Pause/Sound area: Pause/Sound stay top-right, Distance moves below.
+   2) Question must sit in the middle and must not overlap HP bar.
+*/
+body.tabletControlBarActive #game{
+  --tablet-topbar-h: 148px!important;
+}
+
+/* Left status panel: hard cap at 25% */
+body.tabletControlBarActive #hud{
+  left:1vw!important;
+  top:10px!important;
+  width:23vw!important;
+  min-width:0!important;
+  max-width:23vw!important;
+  height:126px!important;
+  padding:8px 10px!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+  transform:none!important;
+  z-index:60!important;
+}
+body.tabletControlBarActive #hud .bar{
+  width:clamp(58px,10vw,130px)!important;
+}
+
+/* Center question column: start after status panel, center between status and right controls */
+body.tabletControlBarActive #aura{
+  left:31vw!important;
+  top:6px!important;
+  width:38vw!important;
+  text-align:center!important;
+  font-size:clamp(13px,1.55vw,20px)!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  z-index:61!important;
+}
+
+body.tabletControlBarActive #question{
+  left:31vw!important;
+  top:38px!important;
+  width:38vw!important;
+  height:94px!important;
+  min-height:0!important;
+  box-sizing:border-box!important;
+  padding:8px 14px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  font-size:clamp(34px,5.5vw,64px)!important;
+  line-height:1!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  border-radius:18px!important;
+  background:rgba(0,0,0,.34)!important;
+  border:2px solid rgba(117,234,255,.65)!important;
+  z-index:59!important;
+}
+
+/* Top-right buttons: stay on top */
+body.tabletControlBarActive #soundBtn{
+  top:12px!important;
+  right:128px!important;
+  z-index:75!important;
+  font-size:clamp(13px,1.8vw,17px)!important;
+  padding:8px 12px!important;
+}
+body.tabletControlBarActive #pauseBtn{
+  top:12px!important;
+  right:12px!important;
+  z-index:75!important;
+  font-size:clamp(13px,1.8vw,17px)!important;
+  padding:8px 12px!important;
+}
+
+/* Distance moves below Sound/Pause, using right 25% area */
+body.tabletControlBarActive #distanceMiniMap{
+  left:71vw!important;
+  right:auto!important;
+  top:80px!important;
+  width:27vw!important;
+  height:70px!important;
+  transform:none!important;
+  transform-origin:top left!important;
+  z-index:58!important;
+}
+body.tabletControlBarActive #miniRoute{
+  left:8px!important;
+  right:52px!important;
+  top:34px!important;
+}
+body.tabletControlBarActive #miniShip{
+  top:16px!important;
+  transform:scale(.78)!important;
+  transform-origin:center!important;
+}
+body.tabletControlBarActive #miniPlanet{
+  right:2px!important;
+  top:6px!important;
+  width:50px!important;
+}
+body.tabletControlBarActive #miniTargetLabel,
+body.tabletControlBarActive #planetMini{
+  display:none!important;
+}
+
+/* Timer / pilot lower, clear from question */
+body.tabletControlBarActive #timer{
+  top:calc(var(--tablet-topbar-h) + 48px)!important;
+  left:26vw!important;
+  width:48vw!important;
+  font-size:clamp(22px,3vw,34px)!important;
+  z-index:50!important;
+}
+body.tabletControlBarActive #pilotLine{
+  top:calc(var(--tablet-topbar-h) + 96px)!important;
+  left:35vw!important;
+  width:30vw!important;
+  font-size:clamp(16px,2vw,24px)!important;
+  z-index:50!important;
+}
+
+/* Short Safari viewport */
+@media(max-height:760px){
+  body.tabletControlBarActive #game{
+    --tablet-topbar-h:132px!important;
+  }
+  body.tabletControlBarActive #hud{
+    top:8px!important;
+    height:112px!important;
+    font-size:clamp(11px,1.35vw,15px)!important;
+    padding:6px 8px!important;
+  }
+  body.tabletControlBarActive #hud .bar{
+    width:clamp(50px,9vw,115px)!important;
+  }
+  body.tabletControlBarActive #aura{
+    left:31vw!important;
+    width:38vw!important;
+    top:4px!important;
+  }
+  body.tabletControlBarActive #question{
+    left:31vw!important;
+    width:38vw!important;
+    top:34px!important;
+    height:78px!important;
+    font-size:clamp(30px,5vw,54px)!important;
+  }
+  body.tabletControlBarActive #distanceMiniMap{
+    left:71vw!important;
+    top:72px!important;
+    width:27vw!important;
+    height:62px!important;
+  }
+  body.tabletControlBarActive #miniPlanet{
+    width:44px!important;
+  }
+  body.tabletControlBarActive #timer{
+    top:calc(var(--tablet-topbar-h) + 40px)!important;
+  }
+  body.tabletControlBarActive #pilotLine{
+    top:calc(var(--tablet-topbar-h) + 78px)!important;
+  }
+}
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 </head>
