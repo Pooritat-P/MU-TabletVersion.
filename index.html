@@ -2131,6 +2131,108 @@ body.tabletControlBarActive #answer{
   }
 }
 
+
+/* ===== TABLET TOP UI FINE TUNE =====
+   Fine-tunes top HUD spacing after Tablet UI + Boss Modal Fix.
+   Goal: HP panel, question box, Aura, timer/pilot line, and distance route do not overlap on iPad landscape.
+*/
+@media (pointer:coarse), (max-aspect-ratio: 4/3), (max-width:1180px){
+  #hud{
+    width:29vw!important;
+    max-width:405px!important;
+    min-width:250px!important;
+  }
+
+  #aura{
+    left:36vw!important;
+    width:34vw!important;
+    top:6px!important;
+    font-size:clamp(15px,1.8vw,22px)!important;
+  }
+
+  #question{
+    left:35vw!important;
+    width:30vw!important;
+    top:70px!important;
+    font-size:clamp(38px,6.1vw,66px)!important;
+    padding:12px 14px!important;
+    min-height:96px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+  }
+
+  #timer{
+    left:31vw!important;
+    width:34vw!important;
+    top:292px!important;
+    font-size:clamp(22px,3vw,34px)!important;
+  }
+
+  #pilotLine{
+    left:40vw!important;
+    width:24vw!important;
+    top:350px!important;
+    font-size:clamp(17px,2.1vw,25px)!important;
+  }
+
+  #distanceMiniMap{
+    top:136px!important;
+    right:150px!important;
+    width:340px!important;
+    transform:scale(.68)!important;
+    transform-origin:top right!important;
+  }
+
+  #planetMini{
+    top:128px!important;
+    right:38px!important;
+    width:78px!important;
+  }
+
+  #soundBtn,#pauseBtn{
+    top:14px!important;
+  }
+}
+
+/* Extra tuning for iPad Safari with browser chrome visible */
+@media (pointer:coarse) and (max-height:760px){
+  #hud{
+    transform:scale(.88)!important;
+    transform-origin:top left!important;
+  }
+  #question{
+    left:36vw!important;
+    width:28vw!important;
+    top:64px!important;
+    font-size:clamp(34px,5.7vw,58px)!important;
+    min-height:82px!important;
+  }
+  #aura{
+    left:35vw!important;
+    width:36vw!important;
+  }
+  #timer{
+    top:260px!important;
+    left:30vw!important;
+    width:34vw!important;
+  }
+  #pilotLine{
+    top:312px!important;
+    left:40vw!important;
+    width:24vw!important;
+  }
+  #distanceMiniMap{
+    top:126px!important;
+    right:142px!important;
+    transform:scale(.62)!important;
+  }
+  #planetMini{
+    top:120px!important;
+    width:70px!important;
+  }
+}
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 </head>
