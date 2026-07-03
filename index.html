@@ -2480,18 +2480,103 @@ body.tabletControlBarActive #pilotLine{
   }
 }
 
-/* TABLET TRUE SCREEN CENTER QUESTION FIX */
-body.tabletControlBarActive #question{position:absolute!important;left:50vw!important;right:auto!important;top:38px!important;width:46vw!important;min-width:0!important;max-width:46vw!important;height:94px!important;transform:translateX(-50%)!important;margin:0!important;box-sizing:border-box!important;display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;padding:8px 18px!important;font-size:clamp(34px,5.5vw,64px)!important;line-height:1!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;z-index:64!important}
-body.tabletControlBarActive #aura{position:absolute!important;left:50vw!important;right:auto!important;top:4px!important;width:46vw!important;transform:translateX(-50%)!important;margin:0!important;text-align:center!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;z-index:65!important}
-body.tabletControlBarActive #statusHud{left:1vw!important;top:10px!important;width:22vw!important;max-width:22vw!important;min-width:0!important;height:126px!important;overflow:hidden!important;box-sizing:border-box!important;z-index:66!important}
-body.tabletControlBarActive #soundBtn{top:12px!important;right:128px!important;z-index:70!important}
-body.tabletControlBarActive #pauseBtn{top:12px!important;right:12px!important;z-index:70!important}
-body.tabletControlBarActive #distanceMiniMap{left:auto!important;right:1vw!important;top:76px!important;width:22vw!important;max-width:22vw!important;transform:none!important;z-index:63!important}
+
+/* ===== TABLET UX FIX: ANSWER CENTER + DUAL INPUT + CLEAN HUD + HINT KEYPAD ===== */
+
+/* 1) Answer box centered above bottom keypad */
+body.tabletControlBarActive #answerWrap{
+  display:block!important;
+  position:fixed!important;
+  left:50%!important;
+  bottom:calc(72px + env(safe-area-inset-bottom,0px))!important;
+  transform:translateX(-50%)!important;
+  text-align:center!important;
+  z-index:2147483001!important;
+}
+body.tabletControlBarActive #answer{
+  width:min(360px,42vw)!important;
+  font-size:clamp(24px,3.2vw,38px)!important;
+  padding:6px 10px!important;
+  pointer-events:auto!important;
+  caret-color:auto!important;
+}
+
+/* 2) Remove/Hide stage badge + center countdown lines on tablet because they block the gameplay area */
+body.tabletControlBarActive #stageBadge,
+body.tabletControlBarActive #timer,
+body.tabletControlBarActive #pilotLine{
+  display:none!important;
+}
+
+/* 3) Keep top question physically centered; keep it away from HP panel */
+body.tabletControlBarActive #question{
+  position:absolute!important;
+  left:50vw!important;
+  top:38px!important;
+  width:46vw!important;
+  max-width:46vw!important;
+  min-width:0!important;
+  height:94px!important;
+  transform:translateX(-50%)!important;
+  margin:0!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  z-index:64!important;
+}
+body.tabletControlBarActive #aura{
+  left:50vw!important;
+  top:4px!important;
+  width:46vw!important;
+  transform:translateX(-50%)!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  text-align:center!important;
+}
+
+/* 4) Right distance route, buttons above it */
+body.tabletControlBarActive #distanceMiniMap{
+  left:auto!important;
+  right:1vw!important;
+  top:76px!important;
+  width:22vw!important;
+  max-width:22vw!important;
+  transform:none!important;
+}
+body.tabletControlBarActive #soundBtn{top:12px!important;right:128px!important;z-index:70!important;}
+body.tabletControlBarActive #pauseBtn{top:12px!important;right:12px!important;z-index:70!important;}
+
+/* 5) Tablet hint/emergency mode: hide emAnswer, use bottom keypad + centered answer box instead */
+body.tabletControlBarActive #emAnswer{
+  display:none!important;
+}
+
+/* 6) About/pause/report/hint selection should not be blocked by bottom keypad */
+body:not(.tabletControlBarActive) #tabletControlLayer,
+#aboutOverlay[style*="flex"] ~ #tabletControlLayer{
+  display:none!important;
+}
+
+/* Short iPad Safari viewport */
 @media (max-height:760px) and (pointer:coarse){
-body.tabletControlBarActive #question{left:50vw!important;width:46vw!important;max-width:46vw!important;top:34px!important;height:78px!important;transform:translateX(-50%)!important;font-size:clamp(30px,5vw,54px)!important}
-body.tabletControlBarActive #aura{left:50vw!important;width:46vw!important;transform:translateX(-50%)!important}
-body.tabletControlBarActive #statusHud{width:22vw!important;max-width:22vw!important;height:112px!important}
-body.tabletControlBarActive #distanceMiniMap{right:1vw!important;width:22vw!important;max-width:22vw!important;top:70px!important}}
+  body.tabletControlBarActive #answerWrap{
+    bottom:calc(66px + env(safe-area-inset-bottom,0px))!important;
+  }
+  body.tabletControlBarActive #answer{
+    width:min(320px,40vw)!important;
+    font-size:clamp(22px,3vw,34px)!important;
+  }
+  body.tabletControlBarActive #question{
+    top:34px!important;
+    height:78px!important;
+    font-size:clamp(30px,5vw,54px)!important;
+  }
+}
 
 </style>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -2694,6 +2779,188 @@ body.tabletControlBarActive #distanceMiniMap{right:1vw!important;width:22vw!impo
 <div id="report"><div class="modalBox" style="max-width:1120px;margin-top:3vh"><h1>📊 Mission Report</h1><div id="reportStats"></div><div id="reportTable"></div><br><button onclick="backToSetup()">กลับหน้าแรก</button> <button onclick="restartSameClass()">เล่นต่อห้องเดิม</button> <button id="reportNextStageBtn" onclick="goNextStage()">➡️ ไปดาวถัดไป</button></div></div>
 
 <script>
+
+// ===== TABLET UX FIX: DUAL INPUT + HINT KEYPAD =====
+(function(){
+  window.muTabletUxValue = window.muTabletUxValue || "";
+
+  function isTouchTabletLike(){
+    return (navigator.maxTouchPoints && navigator.maxTouchPoints > 0)
+      || ('ontouchstart' in window)
+      || (window.matchMedia && window.matchMedia('(pointer: coarse)').matches)
+      || /iPad|Android|Tablet|Mobile/i.test(navigator.userAgent)
+      || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  }
+
+  function gameplayActive(){
+    const gs = document.getElementById('gameScreen');
+    if(!gs || !gs.classList.contains('active')) return false;
+
+    const about = document.getElementById('aboutOverlay');
+    if(about && getComputedStyle(about).display !== 'none') return false;
+
+    const pause = document.getElementById('pauseOverlay');
+    if(pause && getComputedStyle(pause).display !== 'none') return false;
+
+    const report = document.getElementById('report');
+    if(report && getComputedStyle(report).display !== 'none') return false;
+
+    const summary = document.getElementById('summary');
+    if(summary && getComputedStyle(summary).display !== 'none') return false;
+
+    // Keep keypad visible for hintDisplay/emergency, but not for hint selection.
+    const hintSelect = document.getElementById('hintSelect');
+    if(hintSelect && getComputedStyle(hintSelect).display !== 'none') return false;
+
+    return true;
+  }
+
+  window.muTabletUxSync = function(){
+    document.body.classList.toggle('tabletControlBarActive', gameplayActive());
+  };
+
+  function getActiveInput(){
+    if(typeof phase !== 'undefined' && phase === 'emergency'){
+      return document.getElementById('emAnswer') || document.getElementById('answer');
+    }
+    return document.getElementById('answer');
+  }
+
+  function renderValue(){
+    const input = getActiveInput();
+    const answer = document.getElementById('answer');
+    if(input) input.value = window.muTabletUxValue || "";
+    if(answer && input !== answer) answer.value = window.muTabletUxValue || "";
+  }
+
+  function submitCurrentValue(){
+    const raw = String(window.muTabletUxValue || "").trim();
+    if(raw === '') return false;
+    const v = parseInt(raw,10);
+
+    // Clear first so UI is ready for next answer
+    window.muTabletUxValue = "";
+    renderValue();
+
+    // Emergency / Hint answer mode
+    if(typeof phase !== 'undefined' && phase === 'emergency'){
+      if(v === ans){
+        correctEmergency();
+      }else{
+        const em = document.getElementById('emAnswer');
+        if(em) em.value = '';
+      }
+      return true;
+    }
+
+    const answerable = !['setup','ended','emergency','recovered'].includes(phase);
+
+    if(bossMode && bossMeteorActive && v === bossMeteorAnswer){
+      shootBossMeteor();
+      return true;
+    }
+
+    if(canSubmit && answerable && v === ans && (!bossMode || (!bossMeteorActive && bossPhase === 'BOSS'))){
+      correctNormal();
+      return true;
+    }
+
+    if(answerable && !Number.isNaN(v)){
+      registerWrongAttempt();
+    }
+    return true;
+  }
+
+  window.muTabletUxPress = function(key){
+    if(key === 'back'){
+      window.muTabletUxValue = String(window.muTabletUxValue || '').slice(0,-1);
+    }else if(key === 'enter'){
+      return submitCurrentValue();
+    }else{
+      window.muTabletUxValue = (String(window.muTabletUxValue || '') + key).slice(0,4);
+    }
+    renderValue();
+    return false;
+  };
+
+  function setupBottomKeypad(){
+    const layer = document.getElementById('tabletControlLayer');
+    if(layer && layer.dataset.uxFixReady !== '1'){
+      layer.dataset.uxFixReady = '1';
+      let lastKey = '', lastAt = 0;
+      const handler = function(e){
+        const btn = e.target.closest && e.target.closest('button[data-key]');
+        if(!btn || !layer.contains(btn)) return;
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+
+        const key = btn.dataset.key;
+        const now = Date.now();
+        if(key === lastKey && now - lastAt < 250) return false;
+        lastKey = key;
+        lastAt = now;
+
+        window.muTabletUxPress(key);
+        return false;
+      };
+      if(window.PointerEvent){
+        layer.addEventListener('pointerdown', handler, {capture:true, passive:false});
+      }else{
+        layer.addEventListener('touchstart', handler, {capture:true, passive:false});
+        layer.addEventListener('click', handler, {capture:true, passive:false});
+      }
+
+      // Remove old inline handlers if present
+      layer.querySelectorAll('button[data-key]').forEach(btn=>{
+        btn.removeAttribute('onclick');
+      });
+    }
+
+    const answer = document.getElementById('answer');
+    if(answer){
+      // Desktop/laptop: allow typing normally.
+      // Touch devices: keep focus possible if user has hardware keyboard, but avoid forced readonly from old patches.
+      answer.removeAttribute('readonly');
+      answer.setAttribute('inputmode','numeric');
+      answer.addEventListener('input',()=>{
+        window.muTabletUxValue = answer.value.replace(/[^\d]/g,'').slice(0,4);
+        answer.value = window.muTabletUxValue;
+      });
+      answer.addEventListener('keydown', (e)=>{
+        if(e.key === 'Enter'){
+          window.muTabletUxValue = answer.value.replace(/[^\d]/g,'').slice(0,4);
+          submitCurrentValue();
+        }
+      }, {capture:true});
+    }
+
+    const em = document.getElementById('emAnswer');
+    if(em){
+      em.addEventListener('input',()=>{
+        window.muTabletUxValue = em.value.replace(/[^\d]/g,'').slice(0,4);
+        em.value = window.muTabletUxValue;
+      });
+      em.addEventListener('keydown',(e)=>{
+        if(e.key === 'Enter'){
+          window.muTabletUxValue = em.value.replace(/[^\d]/g,'').slice(0,4);
+          submitCurrentValue();
+        }
+      }, {capture:true});
+    }
+
+    window.muTabletUxSync();
+    renderValue();
+  }
+
+  window.addEventListener('DOMContentLoaded', setupBottomKeypad);
+  window.addEventListener('resize', window.muTabletUxSync);
+  window.addEventListener('orientationchange', window.muTabletUxSync);
+  setTimeout(setupBottomKeypad,100);
+  setInterval(window.muTabletUxSync,300);
+})();
+
+
 
 // ===== TABLET CONTROL V2F: SINGLE INPUT FIX =====
 window.tabletControlBarValue = window.tabletControlBarValue || "";
@@ -3097,7 +3364,7 @@ function renderStudents(){
 function markAllPresent(){students.forEach(s=>s.status='present');renderStudents()}
 function markAllAbsent(){students.forEach(s=>s.status='absent');renderStudents()}
 function resetCalled(){calledSet.clear();students.forEach(s=>s.called=0);renderStudents()}
-function startMission(){setTimeout(tabletControlBarSync,0);saveDifficultySettings();if(!students.length)generateQuick();applyPlanetAssets();document.body.style.overflow='hidden';$('setup').classList.remove('active');$('gameScreen').classList.add('active');$('shipLabel').innerText=$('shipName').value||'Math Voyager';if(!soundOn){soundOn=true;$('soundBtn').innerText='🔊 Sound';initAudio();startBgm();}if(currentPlanetId==='water' && !localStorage.getItem('mathUniverseCampaignStarted')){resetCampaignCarry();combo=0;}else{combo=campaignCombo||combo||0;} maxCombo=Math.max(maxCombo,combo); shield=campaignShield;dist=1000;hp=100;shield=campaignShield;kills=0;corrects=0;wrongs=0;wrongAttempts=0;hints=0;bossMode=false;bossHp=100;stopBossMeteor();updateUI();if(soundOn)startBgm();newRound()}
+function startMission(){setTimeout(muTabletUxSync,0);setTimeout(tabletControlBarSync,0);saveDifficultySettings();if(!students.length)generateQuick();applyPlanetAssets();document.body.style.overflow='hidden';$('setup').classList.remove('active');$('gameScreen').classList.add('active');$('shipLabel').innerText=$('shipName').value||'Math Voyager';if(!soundOn){soundOn=true;$('soundBtn').innerText='🔊 Sound';initAudio();startBgm();}if(currentPlanetId==='water' && !localStorage.getItem('mathUniverseCampaignStarted')){resetCampaignCarry();combo=0;}else{combo=campaignCombo||combo||0;} maxCombo=Math.max(maxCombo,combo); shield=campaignShield;dist=1000;hp=100;shield=campaignShield;kills=0;corrects=0;wrongs=0;wrongAttempts=0;hints=0;bossMode=false;bossHp=100;stopBossMeteor();updateUI();if(soundOn)startBgm();newRound()}
 
 function setMiniShipIcon(){
   try{
