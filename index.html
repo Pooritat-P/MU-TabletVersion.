@@ -158,93 +158,2377 @@ th{background:rgba(255,255,255,.08)}
 }
 
 
-/* ===== OEG-0 DEEP CLEANUP: CANONICAL STYLE LAYER =====
-   One source of truth for duplicated UI/function groups.
-   Gameplay logic is not changed.
-*/
+/* ===== Build 12 Ultimate Final COMPLETE VISUAL FIX ===== */
+#ship{
+  width:215px!important;
+  left:92px!important;
+  top:59vh!important;
+}
+#enemy{
+  width:105px!important;
+  top:60vh!important;
+}
+#boss{
+  width:315px!important;
+  right:78px!important;
+  top:47vh!important;
+}
+#bossHpWrap{
+  right:92px!important;
+  top:40vh!important;
+  width:285px!important;
+}
+#bossMeteor{
+  width:92px!important;
+  top:63vh!important;
+}
+#laser{
+  top:calc(59vh + 43px)!important;
+}
+#explosion{
+  width:150px!important;
+  height:auto!important;
+  object-fit:contain!important;
+  display:none;
+  z-index:40!important;
+  pointer-events:none;
+  transform:translate(-50%,-50%) scale(.9);
+  filter:drop-shadow(0 0 18px rgba(120,220,255,.95));
+}
+.explode{
+  display:block!important;
+  animation:explodePNG .48s ease-out forwards!important;
+}
+@keyframes explodePNG{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(.35)}
+  20%{opacity:1;transform:translate(-50%,-50%) scale(.85)}
+  65%{opacity:1;transform:translate(-50%,-50%) scale(1.18)}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(1.45)}
+}
+#question{
+  top:54px!important;
+  left:50%!important;
+  transform:translateX(-50%)!important;
+  width:auto!important;
+  min-width:420px;
+  max-width:760px;
+  padding:10px 28px;
+  border-radius:22px;
+  background:rgba(0,0,0,.58);
+  border:2px solid rgba(117,234,255,.55);
+  box-shadow:0 0 25px rgba(117,234,255,.28), inset 0 0 25px rgba(117,234,255,.08);
+  font-size:64px!important;
+  line-height:1.05;
+  color:#ffffff;
+  text-shadow:0 0 12px #000,0 0 22px rgba(117,234,255,.75),3px 3px 6px #000;
+}
+#timer{
+  top:140px!important;
+  font-size:32px!important;
+  background:rgba(0,0,0,.38);
+  border-radius:999px;
+  width:max-content!important;
+  left:50%;
+  transform:translateX(-50%);
+  padding:4px 18px;
+}
+#pilotLine{
+  top:186px!important;
+  font-size:25px!important;
+}
 
-/* Core gameplay scale */
-#ship{width:clamp(300px,25vh,390px)!important;left:clamp(65px,5vw,130px)!important;top:56vh!important}
-#enemy{width:clamp(145px,14vh,210px)!important;top:58vh!important}
-#boss{width:clamp(560px,46vh,760px)!important;right:clamp(18px,2.4vw,60px)!important;top:38vh!important}
-#bossHpWrap{width:clamp(430px,38vh,600px)!important;right:clamp(40px,4vw,120px)!important;top:31vh!important;height:32px!important}
-#bossMeteor,#bossGateMeteor{width:clamp(300px,28vh,400px)!important;top:56vh!important}
-#laser{top:calc(56vh + 72px)!important;height:56px!important;object-fit:fill!important;filter:drop-shadow(0 0 16px rgba(120,220,255,1))}
 
-/* Question and answer */
-#question{top:34px!important;left:50%!important;transform:translateX(-50%)!important;min-width:clamp(420px,36vw,760px)!important;max-width:760px!important;padding:12px 28px!important;font-size:clamp(54px,6.5vh,86px)!important;border-radius:26px!important;background:rgba(0,0,0,.72)!important;border:3px solid rgba(117,234,255,.78)!important;box-shadow:0 0 34px rgba(117,234,255,.42),inset 0 0 32px rgba(117,234,255,.12)!important;text-shadow:0 0 14px #000,0 0 28px rgba(117,234,255,.9),4px 4px 7px #000!important}
-#answerWrap,body.tabletKeyboardSafe #answerWrap,body.tabletControlBarActive #answerWrap{position:absolute!important;left:50%!important;right:auto!important;bottom:calc(72px + env(safe-area-inset-bottom,0px))!important;transform:translateX(-50%)!important;text-align:center!important;z-index:1002!important}
-#answer,body.tabletKeyboardSafe #answer,body.tabletControlBarActive #answer{width:clamp(330px,24vw,470px)!important;font-size:clamp(40px,4vh,56px)!important;pointer-events:auto!important;user-select:text!important;-webkit-user-select:text!important;caret-color:#fff!important;touch-action:auto!important}
+/* ===== BUILD 12 ULTIMATE FINAL: SIZE + LASER + QUESTION PATCH ===== */
+#ship{
+  width:310px!important;
+  left:64px!important;
+  top:56vh!important;
+}
+#enemy{
+  width:155px!important;
+  top:58vh!important;
+}
+#boss{
+  width:455px!important;
+  right:42px!important;
+  top:43vh!important;
+}
+#bossHpWrap{
+  right:82px!important;
+  top:36vh!important;
+  width:380px!important;
+  height:28px!important;
+}
+#bossMeteor{
+  width:135px!important;
+  top:60vh!important;
+}
+#laser{
+  top:calc(56vh + 63px)!important;
+  height:48px!important;
+  object-fit:fill!important;
+  filter:drop-shadow(0 0 16px rgba(120,220,255,1));
+}
+#question{
+  top:42px!important;
+  min-width:520px!important;
+  max-width:900px!important;
+  padding:14px 38px!important;
+  font-size:82px!important;
+  border-radius:26px!important;
+  background:rgba(0,0,0,.72)!important;
+  border:3px solid rgba(117,234,255,.78)!important;
+  box-shadow:0 0 34px rgba(117,234,255,.42), inset 0 0 32px rgba(117,234,255,.12)!important;
+  text-shadow:0 0 14px #000,0 0 28px rgba(117,234,255,.9),4px 4px 7px #000!important;
+}
+#timer{
+  top:154px!important;
+  font-size:34px!important;
+}
+#pilotLine{
+  top:205px!important;
+  font-size:27px!important;
+}
+#answer{
+  font-size:42px!important;
+  width:330px!important;
+}
+#bossGateMeteor{
+  position:absolute;
+  z-index:9;
+  display:none;
+  width:155px;
+  top:58vh;
+  left:58%;
+  filter:drop-shadow(0 0 12px rgba(90,190,255,.55));
+  animation:enemyFloat 3.2s ease-in-out infinite;
+}
+#bossGateMeteor.showGate{
+  display:block!important;
+  animation:gatePop .45s ease-out forwards, enemyFloat 3.2s ease-in-out infinite;
+}
+@keyframes gatePop{
+  0%{opacity:0;transform:scale(.45)}
+  60%{opacity:1;transform:scale(1.15)}
+  100%{opacity:1;transform:scale(1)}
+}
 
-/* Clean play HUD */
-body.tabletControlBarActive #timer,body.tabletControlBarActive #pilotLine,body.tabletControlBarActive #stageBadge,body.tabletControlBarActive #difficultyBadge,body.tabletControlBarActive #bossWarning,body.tabletControlBarActive #bossMeteorLabel,#gameScreen.active #timer,#gameScreen.active #pilotLine,#gameScreen.active #stageBadge,#gameScreen.active #difficultyBadge,#gameScreen.active #bossWarning,#gameScreen.active #bossMeteorLabel{display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important}
 
-/* Status HUD only, old HUD/combo hidden */
-#hud,#combo{display:none!important}
-#statusHud{display:block!important;position:absolute;z-index:40;top:18px;left:18px;width:360px;padding:14px 16px;border-radius:22px;border:2px solid rgba(117,234,255,.55);background:linear-gradient(180deg,rgba(0,12,28,.82),rgba(0,0,0,.62));box-shadow:0 0 28px rgba(117,234,255,.24);backdrop-filter:blur(5px)}
-.hudRow{display:flex;align-items:center;gap:10px;margin:5px 0}
-.hudLabel{font-size:24px;font-weight:900;text-shadow:0 0 8px #000;min-width:74px}
-.hpBarOuter{position:relative;flex:1;height:30px;border-radius:999px;overflow:hidden;border:2px solid rgba(255,255,255,.55);background:rgba(0,0,0,.45);box-shadow:inset 0 0 10px rgba(0,0,0,.8)}
-#hpFillNew{height:100%;width:100%;border-radius:999px;background:linear-gradient(90deg,#16a34a,#86efac);box-shadow:0 0 16px rgba(134,239,172,.65)}
-#hpTextNew{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:#fff;text-shadow:1px 1px 3px #000}
-#shieldIcons{font-size:30px;letter-spacing:4px;min-height:36px;filter:drop-shadow(0 0 8px rgba(117,234,255,.85))}
-#comboHudNew{font-size:34px;font-weight:900;color:#ffd966;text-shadow:0 0 10px #000,0 0 16px rgba(255,217,102,.65)}
+/* ===== SAFE PATCH: ULTRAWIDE SCALE + BIG QUESTION + END SCREEN ===== */
+#ship{
+  width:clamp(300px, 25vh, 390px)!important;
+  left:clamp(65px, 5vw, 130px)!important;
+  top:56vh!important;
+}
+#enemy{
+  width:clamp(145px, 14vh, 210px)!important;
+  top:58vh!important;
+}
+#boss{
+  width:clamp(430px, 42vh, 650px)!important;
+  right:clamp(40px, 4vw, 120px)!important;
+  top:41vh!important;
+}
+#bossHpWrap{
+  width:clamp(360px, 34vh, 520px)!important;
+  right:clamp(70px, 6vw, 160px)!important;
+  top:34vh!important;
+  height:30px!important;
+}
+#bossMeteor,#bossGateMeteor{
+  width:clamp(140px, 13vh, 205px)!important;
+}
+#laser{
+  top:calc(56vh + 62px)!important;
+  height:56px!important;
+}
+#question{
+  top:34px!important;
+  min-width:clamp(560px, 42vw, 920px)!important;
+  max-width:1050px!important;
+  padding:16px 42px!important;
+  font-size:clamp(74px, 7.5vh, 108px)!important;
+  border-radius:28px!important;
+  background:rgba(0,0,0,.76)!important;
+  border:4px solid rgba(117,234,255,.86)!important;
+  box-shadow:0 0 38px rgba(117,234,255,.50), inset 0 0 34px rgba(117,234,255,.15)!important;
+  text-shadow:0 0 14px #000,0 0 28px rgba(117,234,255,.9),4px 4px 7px #000!important;
+}
+#timer{
+  top:150px!important;
+  font-size:clamp(32px, 3.3vh, 44px)!important;
+}
+#pilotLine{
+  top:202px!important;
+  font-size:clamp(24px, 2.6vh, 32px)!important;
+}
+#answer{
+  font-size:clamp(40px, 4vh, 56px)!important;
+  width:clamp(330px, 24vw, 470px)!important;
+}
+.endOverlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:3000;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:rgba(0,0,0,.88);
+  backdrop-filter:blur(5px);
+}
+.endCard{
+  min-width:min(860px,92vw);
+  border-radius:32px;
+  padding:44px 54px;
+  border:4px solid rgba(117,234,255,.78);
+  background:radial-gradient(circle at top,rgba(10,55,95,.96),rgba(0,0,0,.92));
+  box-shadow:0 0 70px rgba(117,234,255,.42);
+}
+.endTitle{
+  font-size:clamp(72px,10vh,132px);
+  font-weight:900;
+  letter-spacing:4px;
+  margin:0;
+  text-shadow:0 0 20px #000,0 0 38px currentColor;
+}
+.winTitle{color:#75eaff}
+.loseTitle{color:#ff5d5d}
+.endSub{
+  font-size:clamp(28px,3.2vh,44px);
+  margin:12px 0 26px;
+}
+.endStats{
+  font-size:24px;
+  color:#dff8ff;
+  line-height:1.5;
+}
+.endBtn{
+  margin-top:24px;
+  font-size:28px;
+  padding:14px 26px;
+}
 
-/* Distance visual */
-#distanceMiniMap{position:absolute!important;z-index:18!important;top:70px!important;right:116px!important;width:340px!important;height:118px!important;pointer-events:none!important;user-select:none!important}
-#miniRoute{position:absolute!important;left:14px!important;right:18px!important;top:58px!important;height:8px!important;border-radius:999px!important;background:linear-gradient(90deg,rgba(117,234,255,.18),rgba(117,234,255,.9))!important;box-shadow:0 0 12px rgba(117,234,255,.75),0 0 28px rgba(117,234,255,.35)!important}
-#miniRoute::before{content:""!important;position:absolute!important;left:0!important;right:0!important;top:-12px!important;height:28px!important;border-top:2px dashed rgba(255,255,255,.34)!important}
-#miniShip{position:absolute!important;display:block!important;left:14px;top:25px!important;width:96px!important;height:auto!important;object-fit:contain!important;font-size:0!important;color:transparent!important;filter:drop-shadow(0 0 10px rgba(117,234,255,.95)) drop-shadow(0 0 18px rgba(0,140,255,.55))!important;transition:left .55s ease-out,transform .55s ease-out,filter .55s ease-out!important;transform:scale(.88)!important}
-#miniPlanet,#miniGoalText{display:none!important}
-#planetMini{z-index:19!important;right:34px!important;top:88px!important;width:118px!important;filter:drop-shadow(0 0 18px rgba(117,234,255,.58))!important}
-#distanceMiniMap.arrived #miniShip{transform:scale(1.06)!important;filter:drop-shadow(0 0 16px rgba(255,217,102,.95)) drop-shadow(0 0 26px rgba(117,234,255,.85))!important}
 
-/* Bottom tablet control bar */
-#tabletControlLayer{display:none!important;position:fixed!important;left:0!important;right:0!important;bottom:0!important;z-index:2147483647!important;width:100vw!important;box-sizing:border-box!important;padding:5px 8px calc(5px + env(safe-area-inset-bottom,0px))!important;background:rgba(0,10,25,.92)!important;border-top:2px solid rgba(117,234,255,.58)!important;pointer-events:auto!important;touch-action:manipulation!important}
-body.tabletControlBarActive #tabletControlLayer{display:block!important}
-#tabletControlLayer,#tabletControlLayer *{pointer-events:auto!important}
-#tabletKeypadV1{width:100%!important;display:grid!important;grid-template-columns:repeat(12,minmax(0,1fr))!important;gap:5px!important}
-#tabletKeypadV1 button{pointer-events:auto!important;min-height:40px!important;padding:4px 0!important;border-radius:9px!important;border:0!important;background:linear-gradient(180deg,#2fc7ff,#1684c4)!important;color:#02101c!important;font-weight:bold!important;font-size:19px!important;line-height:1!important;touch-action:manipulation!important;-webkit-tap-highlight-color:transparent!important;cursor:pointer!important}
-#tabletKeypadV1 button[data-key="enter"]{background:linear-gradient(180deg,#ffd966,#f59e0b)!important;font-size:15px!important}
-#tabletKeypadV1 button[data-key="back"]{background:linear-gradient(180deg,#9fb7c9,#51687a)!important;color:#fff!important}
+/* ===== FRONTPAGE HOTFIX ===== */
+#setup{height:auto!important;min-height:100vh;overflow-y:auto!important;padding-bottom:90px!important}
+#gameScreen.active{height:100vh!important;overflow:hidden!important}
+#studentTools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:10px 0}
+#studentSearch{max-width:320px}
+#studentTable{max-height:430px!important;overflow-y:auto!important;overflow-x:auto!important;border:1px solid rgba(255,255,255,.22);border-radius:12px;background:rgba(0,0,0,.18)}
+#studentTable table{margin-top:0}
+#studentTable th{position:sticky;top:0;z-index:5;background:#10243d}
+#studentTable td input,#studentTable td select{width:100%}
+#bossGateMeteor{display:none!important}
 
-/* About and pause */
-body.tabletControlBarActive #aboutBtn,#gameScreen.active ~ #aboutBtn{display:none!important;visibility:hidden!important;pointer-events:none!important}
-.pauseMenuBox{width:min(620px,92vw)!important;text-align:center!important}
-.pauseMenuActions{display:flex!important;flex-direction:column!important;gap:14px!important;margin-top:20px!important}
-.pauseMenuActions button{font-size:26px!important;padding:14px 22px!important;border-radius:18px!important}
-.pauseMenuActions .dangerBtn{background:linear-gradient(180deg,#ff5b5b,#b91c1c)!important;color:#fff!important;border-color:#ffd1d1!important;box-shadow:0 0 24px rgba(255,90,90,.35)!important}
 
-/* Boss intro modal */
-#summary{overflow-y:auto!important;-webkit-overflow-scrolling:touch!important;padding:10px 0 calc(78px + env(safe-area-inset-bottom,0px))!important}
-#summary .modalBox{width:min(900px,92vw)!important;max-height:calc(100dvh - 105px)!important;overflow-y:auto!important;margin:2vh auto!important;padding:18px!important;box-sizing:border-box!important}
-#summary #bossIntroImage{width:min(620px,70vw)!important;max-height:38dvh!important;object-fit:contain!important}
+/* ===== BOSS METEOR SHOOTABLE + MP3 BGM PATCH ===== */
+#bossMeteor.targetable{
+  outline:3px solid rgba(117,234,255,.65);
+  border-radius:50%;
+  filter:drop-shadow(0 0 18px rgba(117,234,255,.9));
+}
+#bossMeteorLabel{
+  position:absolute;
+  z-index:18;
+  display:none;
+  font-size:28px;
+  color:#ffd966;
+  text-shadow:0 0 10px #000,2px 2px 4px #000;
+}
 
-/* End screen */
-.endOverlay{display:none;position:fixed!important;inset:0!important;z-index:120000!important;align-items:center!important;justify-content:center!important;text-align:center!important;background:rgba(0,0,0,.88)!important;backdrop-filter:blur(5px)!important}
-.endCard{min-width:min(860px,92vw);border-radius:32px;padding:44px 54px;border:4px solid rgba(117,234,255,.78);background:radial-gradient(circle at top,rgba(10,55,95,.96),rgba(0,0,0,.92));box-shadow:0 0 70px rgba(117,234,255,.42)}
+
+/* ===== BOSS METEOR EXCITEMENT PATCH ===== */
+#bossMeteor.targetable{
+  display:block!important;
+  outline:4px solid rgba(255,216,91,.85);
+  border-radius:50%;
+  filter:drop-shadow(0 0 24px rgba(255,216,91,.95)) drop-shadow(0 0 18px rgba(117,234,255,.8))!important;
+}
+#bossMeteorLabel{
+  position:absolute;
+  z-index:18;
+  display:none;
+  font-size:34px;
+  font-weight:bold;
+  color:#ffd966;
+  text-shadow:0 0 10px #000,2px 2px 4px #000;
+}
+
+
+/* ===== CONTENT EXPANSION: CAMPAIGN MAP + STAR RATING ===== */
+#campaignCard{border:2px solid rgba(117,234,255,.28)}
+#planetMap{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-top:14px}
+.planetBtn{
+  position:relative;
+  min-height:190px;
+  padding:12px;
+  border-radius:20px;
+  border:2px solid rgba(255,255,255,.18);
+  background:linear-gradient(180deg,rgba(9,22,42,.94),rgba(1,5,14,.88));
+  color:white;
+  overflow:hidden;
+  cursor:pointer;
+  text-align:left;
+  box-shadow:0 0 22px rgba(0,0,0,.22);
+}
+.planetBtn img{position:absolute;right:-14px;bottom:8px;width:120px;max-height:110px;object-fit:contain;filter:drop-shadow(0 0 14px rgba(255,255,255,.18));opacity:.9}
+.planetBtn h3{position:relative;z-index:2;margin:0 0 6px;font-size:22px}
+.planetBtn .planetMeta{position:relative;z-index:2;font-size:14px;color:#dff8ff;line-height:1.45;max-width:120px}
+.planetBtn .stars{position:relative;z-index:2;margin-top:8px;font-size:22px;letter-spacing:1px;color:#ffd966;text-shadow:0 0 8px #000}
+.planetBtn.selected{border-color:var(--cyan);box-shadow:0 0 28px rgba(117,234,255,.35)}
+.planetBtn.locked{opacity:.42;filter:grayscale(.8);cursor:not-allowed}
+.planetBtn.locked:after{content:"🔒";position:absolute;right:12px;top:10px;font-size:30px;z-index:3}
+#stageBadge{
+  position:absolute;
+  z-index:13;
+  left:50%;
+  transform:translateX(-50%);
+  top:235px;
+  padding:8px 22px;
+  border-radius:999px;
+  border:2px solid rgba(117,234,255,.7);
+  background:rgba(0,0,0,.68);
+  color:#e9fbff;
+  font-size:22px;
+  text-shadow:0 0 10px #000;
+}
+#campaignProgressText{font-size:18px;color:#dff8ff;margin-top:10px}
+#nextStageBtn{display:none;margin-left:10px}
+
+
+/* ===== CAMPAIGN POLISH PATCH: Boss Intro + Bigger Right Boss/Meteor + Pilot Popup ===== */
+#boss{
+  width:clamp(560px, 46vh, 760px)!important;
+  right:clamp(18px, 2.4vw, 60px)!important;
+  top:38vh!important;
+}
+#enemy{
+  width:clamp(260px, 24vh, 360px)!important;
+  top:56vh!important;
+}
+#bossMeteor{
+  width:clamp(300px, 28vh, 400px)!important;
+  top:56vh!important;
+}
+#bossGateMeteor{
+  width:clamp(300px, 28vh, 400px)!important;
+  top:56vh!important;
+}
+#bossHpWrap{
+  width:clamp(430px, 38vh, 600px)!important;
+  right:clamp(40px, 4vw, 120px)!important;
+  top:31vh!important;
+  height:32px!important;
+}
+#laser{
+  top:calc(56vh + 72px)!important;
+}
+#pilotPopup{
+  min-width:min(760px,88vw)!important;
+  padding:34px 54px!important;
+  font-weight:900!important;
+}
+.pilotRole{
+  font-size:38px;
+  color:#e9fbff;
+  text-shadow:0 0 12px #000;
+}
+.pilotNumber{
+  font-size:150px;
+  line-height:.95;
+  color:#75eaff;
+  text-shadow:0 0 22px #75eaff,0 0 42px rgba(117,234,255,.8),4px 4px 8px #000;
+  margin:10px 0;
+}
+.pilotName{
+  font-size:44px;
+  color:#ffffff;
+  text-shadow:0 0 14px #000,2px 2px 5px #000;
+  min-height:52px;
+}
+.pilotStation{
+  margin-top:8px;
+  font-size:36px;
+  color:#ffd966;
+  text-shadow:0 0 14px #000,0 0 18px rgba(255,217,102,.55);
+}
+#bossIntroImage{
+  width:min(620px,70vw);
+  max-height:54vh;
+  object-fit:contain;
+  filter:drop-shadow(0 0 32px rgba(117,234,255,.42));
+  animation:bossIntroPulse 2.2s ease-in-out infinite;
+}
+#bossIntroTitle{
+  font-size:clamp(34px,5vh,60px);
+  font-weight:900;
+  margin:10px 0 0;
+  text-shadow:0 0 18px #000,0 0 24px currentColor;
+}
+#bossIntroSub{
+  font-size:clamp(22px,3vh,36px);
+  color:#dff8ff;
+  margin:8px 0 18px;
+}
+@keyframes bossIntroPulse{
+  0%,100%{transform:scale(1);filter:drop-shadow(0 0 28px rgba(117,234,255,.35))}
+  50%{transform:scale(1.045);filter:drop-shadow(0 0 48px rgba(117,234,255,.75))}
+}
+
+
+/* ===== FINAL Production Classroom Edition PATCH ===== */
+body{
+  background-image:linear-gradient(rgba(0,0,0,.18),rgba(0,0,0,.25)),url("assets/asset_002_70c749fd8190.png")!important;
+  background-size:cover!important;background-position:center center!important;background-attachment:fixed!important;
+}
+#setup:before,#gameScreen:before{
+  content:"";position:fixed;inset:0;z-index:-2;background-image:url("assets/asset_002_70c749fd8190.png");
+  background-size:cover;background-position:center;filter:saturate(1.1) brightness(.92);
+}
+#gameScreen.active:before{animation:spaceDrift 42s ease-in-out infinite alternate}
+@keyframes spaceDrift{from{transform:scale(1.02) translateX(0)}to{transform:scale(1.08) translateX(-26px)}}
+#creditBadge{position:fixed;right:12px;bottom:8px;z-index:3000;font-size:13px;color:rgba(255,255,255,.82);background:rgba(0,0,0,.38);border:1px solid rgba(117,234,255,.25);border-radius:999px;padding:6px 12px;backdrop-filter:blur(4px)}
+#aboutBtn{position:fixed;right:12px;bottom:44px;z-index:3000;font-size:14px;padding:7px 12px}
+#aboutOverlay{display:none;position:fixed;inset:0;z-index:5000;align-items:center;justify-content:center;background:rgba(0,0,0,.78);backdrop-filter:blur(5px)}
+#aboutOverlay .aboutBox{max-width:720px;width:90vw;text-align:center;border-radius:28px;padding:34px;border:3px solid rgba(117,234,255,.65);background:radial-gradient(circle at top,rgba(22,44,86,.96),rgba(0,0,0,.92));box-shadow:0 0 55px rgba(117,234,255,.35)}
+#aboutOverlay h1{font-size:48px;margin:0 0 12px;color:#75eaff;text-shadow:0 0 20px rgba(117,234,255,.8)}
+#aboutOverlay p{font-size:22px;line-height:1.55;color:#e9fbff}
+#bossIntroQuote{font-size:clamp(24px,3.6vh,42px);color:#ffd966;margin:14px auto 22px;max-width:900px;line-height:1.25;font-weight:800;text-shadow:0 0 14px #000,0 0 18px rgba(255,217,102,.55)}
+#bossIntroImage{width:min(720px,76vw)!important;max-height:56vh!important}
+.excelHint{display:block;margin-top:6px;color:#dff8ff;font-size:14px}
+
+
+/* ===== HOTFIX: FORCE BACKGROUND + CREDIT VISIBILITY + END NEXT BUTTON ===== */
+html,body,#setup,#gameScreen{
+  background-image:linear-gradient(rgba(0,0,0,.18),rgba(0,0,0,.25)),url("assets/asset_002_70c749fd8190.png")!important;
+  background-size:cover!important;
+  background-position:center center!important;
+  background-repeat:no-repeat!important;
+  background-attachment:fixed!important;
+}
+#spaceBg,#bg,#background,#gameBg,.bg,.background{
+  background-image:url("assets/asset_002_70c749fd8190.png")!important;
+  background-size:cover!important;
+  background-position:center!important;
+}
+#creditBadge{
+  display:block!important;
+  position:fixed!important;
+  right:12px!important;
+  bottom:8px!important;
+  z-index:99999!important;
+  font-size:14px!important;
+  color:rgba(255,255,255,.92)!important;
+  background:rgba(0,0,0,.58)!important;
+  border:1px solid rgba(117,234,255,.55)!important;
+  border-radius:999px!important;
+  padding:7px 13px!important;
+  backdrop-filter:blur(4px)!important;
+  pointer-events:auto!important;
+}
+#aboutBtn{
+  display:block!important;
+  position:fixed!important;
+  right:12px!important;
+  bottom:48px!important;
+  z-index:99999!important;
+}
+#aboutOverlay{
+  z-index:100000!important;
+}
+#nextStageBtn{
+  display:inline-block;
+}
+
+
+/* ===== HOTFIX2: END SCREEN ABOVE ALL ===== */
+.endOverlay{
+  display:none;
+  position:fixed!important;
+  inset:0!important;
+  z-index:120000!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  background:rgba(0,0,0,.88)!important;
+  backdrop-filter:blur(5px)!important;
+}
+.endCard{
+  min-width:min(860px,92vw);
+  border-radius:32px;
+  padding:44px 54px;
+  border:4px solid rgba(117,234,255,.78);
+  background:radial-gradient(circle at top,rgba(10,55,95,.96),rgba(0,0,0,.92));
+  box-shadow:0 0 70px rgba(117,234,255,.42);
+}
 .endTitle{font-size:clamp(72px,10vh,132px);font-weight:900;letter-spacing:4px;margin:0;text-shadow:0 0 20px #000,0 0 38px currentColor}
 .winTitle{color:#75eaff}.loseTitle{color:#ff5d5d}
 .endSub{font-size:clamp(28px,3.2vh,44px);margin:12px 0 26px}
 .endStats{font-size:24px;color:#dff8ff;line-height:1.5}
 .endBtn{margin-top:24px;font-size:28px;padding:14px 26px}
 
-/* Combo milestone */
-#comboMilestoneOverlay{display:none!important;position:fixed!important;inset:0!important;z-index:130000!important;align-items:center!important;justify-content:center!important;pointer-events:none!important;background:rgba(0,0,0,.10)!important}
-#comboMilestoneOverlay.comboShow{display:flex!important}
-#comboMilestoneImg{width:min(760px,76vw)!important;max-height:46vh!important;object-fit:contain!important;filter:drop-shadow(0 0 34px rgba(255,255,255,.65))!important;animation:comboMilestonePop .98s ease-out forwards!important}
 
-/* About/README visual cards */
-#completeHeroBanner{width:100%!important;margin:16px auto 22px!important;border-radius:28px!important;overflow:hidden!important;border:2px solid rgba(117,234,255,.45)!important;box-shadow:0 0 38px rgba(117,234,255,.24),inset 0 0 28px rgba(255,255,255,.05)!important;background:rgba(0,0,0,.32)!important}
-#completeHeroBanner img{width:100%!important;display:block!important;object-fit:cover!important}
-#aboutOverlay{display:none;position:fixed!important;inset:0!important;z-index:999999!important;align-items:center!important;justify-content:center!important;background:rgba(0,0,0,.9)!important;backdrop-filter:blur(6px)!important;overflow:auto!important;padding:24px!important}
-#aboutOverlay .aboutBox,#aboutOverlay .completeAboutBox{max-width:1180px!important;width:min(1180px,94vw)!important;max-height:90vh!important;overflow:auto!important;text-align:center!important;border-radius:28px!important;padding:28px!important;border:3px solid rgba(117,234,255,.65)!important;background:radial-gradient(circle at top,rgba(22,44,86,.98),rgba(0,0,0,.96))!important;box-shadow:0 0 55px rgba(117,234,255,.35)!important}
-.aboutInfographicGrid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:18px!important;margin-top:18px!important}
-.aboutInfographicCard{border:2px solid rgba(117,234,255,.35)!important;border-radius:22px!important;padding:12px!important;background:rgba(0,0,0,.35)!important;box-shadow:0 0 22px rgba(117,234,255,.18)!important}
-.aboutInfographic{width:100%!important;border-radius:16px!important;display:block!important;cursor:pointer!important;box-shadow:0 0 18px rgba(0,0,0,.5)!important;transition:.22s ease!important}
+/* ===== HOTFIX3: NEXT STAGE FROM REPORT ===== */
+#reportNextStageBtn{
+  display:none;
+  margin-left:8px;
+  font-size:24px;
+  padding:12px 20px;
+  border:2px solid rgba(255,217,102,.75);
+  box-shadow:0 0 20px rgba(255,217,102,.35);
+}
 
-/* Responsive */
-@media(max-width:900px){#distanceMiniMap{transform:scale(.78)!important;transform-origin:top right!important;right:86px!important;top:68px!important}.aboutInfographicGrid{grid-template-columns:1fr!important}#tabletKeypadV1{gap:3px!important}#tabletKeypadV1 button{min-height:38px!important;font-size:16px!important;border-radius:7px!important}}
+
+/* ===== HOTFIX5: SHIELD CARRY OVER + COMBO CARRY OVER + HUD + COMBO ASSETS ===== */
+#statusHud{
+  position:absolute;
+  z-index:40;
+  top:18px;
+  left:18px;
+  width:360px;
+  padding:14px 16px;
+  border-radius:22px;
+  border:2px solid rgba(117,234,255,.55);
+  background:linear-gradient(180deg,rgba(0,12,28,.82),rgba(0,0,0,.62));
+  box-shadow:0 0 28px rgba(117,234,255,.24);
+  backdrop-filter:blur(5px);
+}
+.hudRow{display:flex;align-items:center;gap:10px;margin:5px 0}
+.hudLabel{font-size:24px;font-weight:900;text-shadow:0 0 8px #000;min-width:74px}
+.hpBarOuter{
+  position:relative;flex:1;height:30px;border-radius:999px;overflow:hidden;
+  border:2px solid rgba(255,255,255,.55);background:rgba(0,0,0,.45);
+  box-shadow:inset 0 0 10px rgba(0,0,0,.8);
+}
+#hpFillNew{height:100%;width:100%;border-radius:999px;background:linear-gradient(90deg,#16a34a,#86efac);box-shadow:0 0 16px rgba(134,239,172,.65)}
+#hpTextNew{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:#fff;text-shadow:1px 1px 3px #000}
+#shieldIcons{font-size:30px;letter-spacing:4px;min-height:36px;filter:drop-shadow(0 0 8px rgba(117,234,255,.85))}
+#comboHudNew{font-size:34px;font-weight:900;color:#ffd966;text-shadow:0 0 10px #000,0 0 16px rgba(255,217,102,.65)}
+#comboMilestoneOverlay{
+  display:none;position:fixed;inset:0;z-index:125000;align-items:center;justify-content:center;
+  pointer-events:none;background:rgba(0,0,0,.12);
+}
+#comboMilestoneImg{
+  width:min(720px,72vw);max-height:44vh;object-fit:contain;
+  filter:drop-shadow(0 0 30px rgba(255,255,255,.55));
+  animation:comboMilestonePop .95s ease-out forwards;
+}
+@keyframes comboMilestonePop{
+  0%{transform:scale(.35) rotate(-3deg);opacity:0}
+  20%{transform:scale(1.18) rotate(1deg);opacity:1}
+  70%{transform:scale(1) rotate(0);opacity:1}
+  100%{transform:scale(.92);opacity:0}
+}
+.stageRewardToast{
+  position:fixed;left:50%;top:18%;transform:translateX(-50%);
+  z-index:126000;padding:18px 32px;border-radius:24px;
+  background:rgba(0,0,0,.78);border:3px solid rgba(255,217,102,.7);
+  color:#fff;font-size:32px;font-weight:900;text-align:center;
+  box-shadow:0 0 40px rgba(255,217,102,.35);
+  text-shadow:0 0 10px #000;
+  animation:rewardToast 2.2s ease forwards;
+}
+@keyframes rewardToast{0%{opacity:0;transform:translateX(-50%) scale(.75)}15%,75%{opacity:1;transform:translateX(-50%) scale(1)}100%{opacity:0;transform:translateX(-50%) scale(.95)}}
+
+
+/* ===== HOTFIX6: HIDE OLD HUD + FIX SHIELD/WRONG STATS ===== */
+#hud{display:none!important;}
+#combo{display:none!important;}
+#statusHud{display:block!important;}
+
+
+/* ===== HOTFIX7: SHIELD BLOCK + WRONG COUNT + COMBO ASSET RESTORE ===== */
+#hud,#combo{display:none!important;}
+#statusHud{display:block!important;}
+#comboMilestoneOverlay{
+  display:none!important;
+  position:fixed!important;
+  inset:0!important;
+  z-index:130000!important;
+  align-items:center!important;
+  justify-content:center!important;
+  pointer-events:none!important;
+  background:rgba(0,0,0,.10)!important;
+}
+#comboMilestoneOverlay.comboShow{
+  display:flex!important;
+}
+#comboMilestoneImg{
+  width:min(760px,76vw)!important;
+  max-height:46vh!important;
+  object-fit:contain!important;
+  filter:drop-shadow(0 0 34px rgba(255,255,255,.65))!important;
+  animation:comboMilestonePop .98s ease-out forwards!important;
+}
+@keyframes comboMilestonePop{
+  0%{transform:scale(.35) rotate(-4deg);opacity:0}
+  20%{transform:scale(1.2) rotate(1deg);opacity:1}
+  72%{transform:scale(1) rotate(0);opacity:1}
+  100%{transform:scale(.92);opacity:0}
+}
+
+
+/* ===== BUILD 13: DIFFICULTY SELECTOR ===== */
+#difficultyCard{border:2px solid rgba(255,217,102,.35)}
+.diffGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:12px}
+.diffBtn{
+  position:relative;
+  padding:14px;
+  border-radius:18px;
+  border:2px solid rgba(255,255,255,.16);
+  background:linear-gradient(180deg,rgba(9,22,42,.92),rgba(0,0,0,.76));
+  color:#fff;
+  cursor:pointer;
+  min-height:120px;
+  text-align:left;
+}
+.diffBtn input{position:absolute;right:12px;top:12px;transform:scale(1.4)}
+.diffBtn h3{margin:0 0 8px;font-size:24px}
+.diffBtn p{margin:0;font-size:15px;line-height:1.45;color:#dff8ff}
+.diffBtn:has(input:checked){
+  border-color:#ffd966;
+  box-shadow:0 0 26px rgba(255,217,102,.34);
+}
+.modeSelectRow{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
+.modePill{
+  flex:1;min-width:240px;
+  padding:12px 14px;
+  border-radius:16px;
+  background:rgba(0,0,0,.36);
+  border:2px solid rgba(117,234,255,.22);
+}
+#difficultyBadge{
+  position:absolute;
+  z-index:14;
+  left:18px;
+  top:185px;
+  padding:7px 14px;
+  border-radius:999px;
+  border:2px solid rgba(255,217,102,.65);
+  background:rgba(0,0,0,.62);
+  color:#fff;
+  font-weight:900;
+  font-size:18px;
+  text-shadow:0 0 8px #000;
+}
+
+
+/* ===== BUILD13 HOTFIX1: FORCE DIFFICULTY SELECTOR VISIBLE ===== */
+#difficultyCard.build13VisibleCard{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  position:relative!important;
+  z-index:50!important;
+  border:3px solid rgba(255,217,102,.65)!important;
+  box-shadow:0 0 34px rgba(255,217,102,.22)!important;
+}
+#setup.active #difficultyCard{display:block!important;}
+.diffGrid{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))!important;gap:12px!important}
+.diffBtn{display:block!important}
+.modeSelectRow{display:flex!important}
+
+
+
+/* ===== BUILD13 FINAL CLEAN: HELL VISIBLE, TEST MODE REMOVED ===== */
+#testModeBtn,#testModeOverlay{display:none!important;visibility:hidden!important;pointer-events:none!important;}
+.hellDiffBtn{
+  border-color:rgba(255,80,80,.85)!important;
+  background:linear-gradient(180deg,rgba(60,0,0,.92),rgba(0,0,0,.82))!important;
+  box-shadow:0 0 26px rgba(255,0,80,.25)!important;
+}
+.hellDiffBtn h3{
+  color:#ff6b6b!important;
+  text-shadow:0 0 14px rgba(255,0,80,.75)!important;
+}
+
+
+/* ===== BUILD13 REPORT TABLE SCROLL ONLY PATCH ===== */
+#reportTable{
+  height:420px!important;
+  max-height:420px!important;
+  overflow-y:auto!important;
+  overflow-x:auto!important;
+  border:2px solid rgba(117,234,255,.35)!important;
+  border-radius:14px!important;
+  background:rgba(0,0,0,.22)!important;
+  margin-top:12px!important;
+  margin-bottom:12px!important;
+}
+#reportTable table{
+  width:100%!important;
+  min-width:760px!important;
+  border-collapse:collapse!important;
+  margin:0!important;
+}
+#reportTable th{
+  position:sticky!important;
+  top:0!important;
+  z-index:20!important;
+  background:#10243d!important;
+  box-shadow:0 2px 0 rgba(117,234,255,.35)!important;
+}
+#reportTable td,
+#reportTable th{
+  padding:8px 10px!important;
+  white-space:nowrap!important;
+}
+
+
+/* ===== BUILD13 DISTANCE VISUAL PATCH ===== */
+#distanceMiniMap{
+  position:absolute;
+  z-index:18;
+  top:78px;
+  right:20px;
+  width:210px;
+  height:86px;
+  pointer-events:none;
+  user-select:none;
+}
+#miniRoute{
+  position:absolute;
+  left:18px;
+  right:58px;
+  top:42px;
+  height:4px;
+  border-radius:999px;
+  background:linear-gradient(90deg,rgba(117,234,255,.15),rgba(117,234,255,.72));
+  box-shadow:0 0 12px rgba(117,234,255,.5);
+}
+#miniRoute::before{
+  content:"";
+  position:absolute;
+  inset:-5px 0;
+  border-top:1px dashed rgba(255,255,255,.28);
+}
+#miniShip{
+  position:absolute;
+  left:18px;
+  top:22px;
+  font-size:28px;
+  filter:drop-shadow(0 0 8px rgba(117,234,255,.9));
+  transition:left .55s ease-out, transform .55s ease-out;
+  transform:rotate(18deg);
+}
+#miniPlanet{
+  position:absolute;
+  right:0;
+  top:0;
+  width:64px;
+  height:64px;
+  object-fit:contain;
+  filter:drop-shadow(0 0 14px rgba(117,234,255,.7));
+}
+#miniGoalText{
+  position:absolute;
+  right:2px;
+  top:63px;
+  font-size:12px;
+  font-weight:bold;
+  color:#dff8ff;
+  text-shadow:0 0 8px #000;
+}
+#distanceMiniMap.arrived #miniShip{
+  transform:rotate(18deg) scale(1.18);
+  filter:drop-shadow(0 0 12px rgba(255,217,102,.95));
+}
+@media(max-width:900px){
+  #distanceMiniMap{transform:scale(.82);transform-origin:top right;right:10px;top:70px}
+}
+
+
+/* ===== BUILD13 DISTANCE VISUAL SHIP ICON PATCH ===== */
+#distanceMiniMap{
+  position:absolute!important;
+  z-index:18!important;
+  top:78px!important;
+  right:20px!important;
+  width:240px!important;
+  height:90px!important;
+  pointer-events:none!important;
+  user-select:none!important;
+}
+#miniRoute{
+  position:absolute!important;
+  left:18px!important;
+  right:66px!important;
+  top:44px!important;
+  height:4px!important;
+  border-radius:999px!important;
+  background:linear-gradient(90deg,rgba(117,234,255,.12),rgba(117,234,255,.68))!important;
+  box-shadow:0 0 12px rgba(117,234,255,.5)!important;
+}
+#miniRoute::before{
+  content:""!important;
+  position:absolute!important;
+  inset:-5px 0!important;
+  border-top:1px dashed rgba(255,255,255,.26)!important;
+}
+#miniShip{
+  position:absolute!important;
+  left:18px;
+  top:20px!important;
+  width:68px!important;
+  height:auto!important;
+  object-fit:contain!important;
+  filter:drop-shadow(0 0 8px rgba(117,234,255,.95))!important;
+  transition:left .55s ease-out, transform .55s ease-out!important;
+  transform:scale(.82)!important;
+}
+#miniPlanet{
+  position:absolute!important;
+  right:0!important;
+  top:0!important;
+  width:64px!important;
+  height:64px!important;
+  object-fit:contain!important;
+  filter:drop-shadow(0 0 14px rgba(117,234,255,.7))!important;
+}
+#miniGoalText{
+  position:absolute!important;
+  right:2px!important;
+  top:63px!important;
+  font-size:12px!important;
+  font-weight:bold!important;
+  color:#dff8ff!important;
+  text-shadow:0 0 8px #000!important;
+}
+#distanceMiniMap.arrived #miniShip{
+  transform:scale(1)!important;
+  filter:drop-shadow(0 0 14px rgba(255,217,102,.95)) drop-shadow(0 0 20px rgba(117,234,255,.65))!important;
+}
+@media(max-width:900px){
+  #distanceMiniMap{transform:scale(.82)!important;transform-origin:top right!important;right:10px!important;top:70px!important}
+}
+
+
+/* ===== BUILD13 DISTANCE VISUAL NO DUPLICATE PLANET FIX ===== */
+/* ใช้ดาวเดิม #planetMini เท่านั้น ไม่สร้างดาวซ้ำ */
+#distanceMiniMap{
+  position:absolute!important;
+  z-index:18!important;
+  top:78px!important;
+  right:92px!important;      /* จบเส้นทางก่อนถึงดาวเดิม */
+  width:230px!important;
+  height:80px!important;
+  pointer-events:none!important;
+}
+#miniRoute{
+  position:absolute!important;
+  left:8px!important;
+  right:10px!important;
+  top:39px!important;
+  height:4px!important;
+  border-radius:999px!important;
+  background:linear-gradient(90deg,rgba(117,234,255,.12),rgba(117,234,255,.72))!important;
+  box-shadow:0 0 12px rgba(117,234,255,.5)!important;
+}
+#miniRoute::before{
+  content:""!important;
+  position:absolute!important;
+  inset:-5px 0!important;
+  border-top:1px dashed rgba(255,255,255,.28)!important;
+}
+#miniShip{
+  position:absolute!important;
+  display:block!important;
+  left:8px;
+  top:14px!important;
+  width:72px!important;
+  height:auto!important;
+  object-fit:contain!important;
+  font-size:0!important;
+  color:transparent!important;
+  filter:drop-shadow(0 0 8px rgba(117,234,255,.95))!important;
+  transition:left .55s ease-out, transform .55s ease-out!important;
+  transform:scale(.82)!important;
+}
+#miniPlanet,#miniGoalText{display:none!important;}
+#planetMini{
+  z-index:19!important;
+  right:35px!important;
+  top:88px!important;
+}
+#distanceMiniMap.arrived #miniShip{
+  transform:scale(1)!important;
+  filter:drop-shadow(0 0 14px rgba(255,217,102,.95)) drop-shadow(0 0 20px rgba(117,234,255,.65))!important;
+}
+
+
+/* ===== BUILD13 DISTANCE VISUAL BIGGER + FINAL TOUCH PATCH ===== */
+/* แถบระยะทางใหญ่ขึ้น ชัดขึ้น ใช้ดาวเดิม และยานจะสัมผัสดาวเฉพาะตอนถึงข้อสุดท้าย */
+#distanceMiniMap{
+  position:absolute!important;
+  z-index:18!important;
+  top:70px!important;
+  right:116px!important;
+  width:340px!important;
+  height:118px!important;
+  pointer-events:none!important;
+  user-select:none!important;
+}
+#miniRoute{
+  position:absolute!important;
+  left:14px!important;
+  right:18px!important;
+  top:58px!important;
+  height:8px!important;
+  border-radius:999px!important;
+  background:linear-gradient(90deg,rgba(117,234,255,.18),rgba(117,234,255,.9))!important;
+  box-shadow:
+    0 0 12px rgba(117,234,255,.75),
+    0 0 28px rgba(117,234,255,.35)!important;
+}
+#miniRoute::before{
+  content:""!important;
+  position:absolute!important;
+  left:0!important;
+  right:0!important;
+  top:-12px!important;
+  height:28px!important;
+  border-top:2px dashed rgba(255,255,255,.34)!important;
+}
+#miniShip{
+  position:absolute!important;
+  display:block!important;
+  left:14px;
+  top:25px!important;
+  width:96px!important;
+  height:auto!important;
+  object-fit:contain!important;
+  font-size:0!important;
+  color:transparent!important;
+  filter:drop-shadow(0 0 10px rgba(117,234,255,.95)) drop-shadow(0 0 18px rgba(0,140,255,.55))!important;
+  transition:left .55s ease-out, transform .55s ease-out, filter .55s ease-out!important;
+  transform:scale(.88)!important;
+}
+#miniPlanet,#miniGoalText{
+  display:none!important;
+}
+#planetMini{
+  z-index:19!important;
+  right:34px!important;
+  top:88px!important;
+  width:118px!important;
+  filter:drop-shadow(0 0 18px rgba(117,234,255,.58))!important;
+}
+#distanceMiniMap.arrived #miniShip{
+  transform:scale(1.06)!important;
+  filter:drop-shadow(0 0 16px rgba(255,217,102,.95)) drop-shadow(0 0 26px rgba(117,234,255,.85))!important;
+}
+@media(max-width:900px){
+  #distanceMiniMap{
+    transform:scale(.78)!important;
+    transform-origin:top right!important;
+    right:86px!important;
+    top:68px!important;
+  }
+}
+
+
+/* ===== BUILD13 PAUSE MENU COMPLETE PATCH ===== */
+.pauseMenuBox{
+  width:min(620px,92vw)!important;
+  text-align:center!important;
+}
+.pauseMenuActions{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:14px!important;
+  margin-top:20px!important;
+}
+.pauseMenuActions button{
+  font-size:26px!important;
+  padding:14px 22px!important;
+  border-radius:18px!important;
+}
+.pauseMenuActions .dangerBtn{
+  background:linear-gradient(180deg,#ff5b5b,#b91c1c)!important;
+  color:#fff!important;
+  border-color:#ffd1d1!important;
+  box-shadow:0 0 24px rgba(255,90,90,.35)!important;
+}
+
+
+/* ===== MATH UNIVERSE COMPLETE EDITION UI PATCH ===== */
+#completeHeroBanner{
+  width:100%;
+  margin:16px auto 22px auto;
+  border-radius:28px;
+  overflow:hidden;
+  border:2px solid rgba(117,234,255,.45);
+  box-shadow:0 0 38px rgba(117,234,255,.24), inset 0 0 28px rgba(255,255,255,.05);
+  background:rgba(0,0,0,.32);
+}
+#completeHeroBanner img{width:100%;display:block;object-fit:cover;}
+#setup h1{
+  font-size:42px!important;
+  letter-spacing:.4px;
+  text-shadow:0 0 18px rgba(117,234,255,.55), 2px 2px 6px #000;
+}
+#aboutOverlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:220000;
+  background:rgba(0,0,0,.9);
+  backdrop-filter:blur(6px);
+}
+.aboutInfographicGrid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin-top:18px;
+}
+.aboutInfographicCard{
+  border:2px solid rgba(117,234,255,.35);
+  border-radius:22px;
+  padding:12px;
+  background:rgba(0,0,0,.35);
+  box-shadow:0 0 22px rgba(117,234,255,.18);
+}
+.aboutInfographicCard h3{
+  margin:8px 4px 12px 4px;
+  font-size:24px;
+  color:#fff;
+}
+.aboutInfographic{
+  width:100%;
+  border-radius:16px;
+  display:block;
+  cursor:pointer;
+  box-shadow:0 0 18px rgba(0,0,0,.5);
+  transition:.22s ease;
+}
+.aboutInfographic:hover{
+  transform:scale(1.015);
+  box-shadow:0 0 24px rgba(117,234,255,.45);
+}
+@media(max-width:900px){
+  .aboutInfographicGrid{grid-template-columns:1fr;}
+  #setup h1{font-size:34px!important;}
+}
+
+
+/* ===== COMPLETE EDITION HEADER + ABOUT HOTFIX ===== */
+#setup h1{
+  font-size:42px!important;
+  color:#fff!important;
+  text-shadow:0 0 18px rgba(117,234,255,.75),2px 2px 8px #000!important;
+}
+#completeHeroBanner{
+  width:100%!important;
+  margin:16px auto 22px auto!important;
+  border-radius:28px!important;
+  overflow:hidden!important;
+  border:2px solid rgba(117,234,255,.45)!important;
+  box-shadow:0 0 38px rgba(117,234,255,.24), inset 0 0 28px rgba(255,255,255,.05)!important;
+  background:rgba(0,0,0,.32)!important;
+}
+#completeHeroBanner img{width:100%!important;display:block!important;object-fit:cover!important;}
+#aboutOverlay{
+  display:none;
+  position:fixed!important;
+  inset:0!important;
+  z-index:250000!important;
+  align-items:center!important;
+  justify-content:center!important;
+  background:rgba(0,0,0,.88)!important;
+  backdrop-filter:blur(6px)!important;
+  overflow:auto!important;
+  padding:24px!important;
+}
+#aboutOverlay .completeAboutBox{
+  max-width:1180px!important;
+  width:min(1180px,94vw)!important;
+  max-height:90vh!important;
+  overflow:auto!important;
+  text-align:center!important;
+  border-radius:28px!important;
+  padding:28px!important;
+  border:3px solid rgba(117,234,255,.65)!important;
+  background:radial-gradient(circle at top,rgba(22,44,86,.98),rgba(0,0,0,.96))!important;
+  box-shadow:0 0 55px rgba(117,234,255,.35)!important;
+}
+#aboutOverlay .completeAboutBox h1{
+  font-size:46px!important;
+  margin:0 0 12px!important;
+  color:#75eaff!important;
+  text-shadow:0 0 20px rgba(117,234,255,.8)!important;
+}
+.aboutInfographicGrid{
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  gap:18px!important;
+  margin-top:18px!important;
+}
+.aboutInfographicCard{
+  border:2px solid rgba(117,234,255,.35)!important;
+  border-radius:22px!important;
+  padding:12px!important;
+  background:rgba(0,0,0,.35)!important;
+  box-shadow:0 0 22px rgba(117,234,255,.18)!important;
+}
+.aboutInfographicCard h3{
+  margin:8px 4px 12px 4px!important;
+  font-size:24px!important;
+  color:#fff!important;
+}
+.aboutInfographic{
+  width:100%!important;
+  border-radius:16px!important;
+  display:block!important;
+  cursor:pointer!important;
+  box-shadow:0 0 18px rgba(0,0,0,.5)!important;
+  transition:.22s ease!important;
+}
+.aboutInfographic:hover{transform:scale(1.015)!important;box-shadow:0 0 24px rgba(117,234,255,.45)!important;}
+.aboutCredit{font-size:20px!important;color:#ffe082!important;margin-top:18px!important;}
+@media(max-width:900px){.aboutInfographicGrid{grid-template-columns:1fr!important;}#setup h1{font-size:34px!important;}}
+
+
+/* ===== COMPLETE EDITION HARD HEADER + ABOUT FIX v3 ===== */
+#setup h1{
+  font-size:42px!important;
+  color:#fff!important;
+  text-shadow:0 0 18px rgba(117,234,255,.75),2px 2px 8px #000!important;
+}
+#completeHeroBanner{
+  width:100%!important;
+  margin:16px auto 22px auto!important;
+  border-radius:28px!important;
+  overflow:hidden!important;
+  border:2px solid rgba(117,234,255,.45)!important;
+  box-shadow:0 0 38px rgba(117,234,255,.24), inset 0 0 28px rgba(255,255,255,.05)!important;
+  background:rgba(0,0,0,.32)!important;
+}
+#completeHeroBanner img{width:100%!important;display:block!important;object-fit:cover!important;}
+
+#aboutOverlay{
+  display:none;
+  position:fixed!important;
+  inset:0!important;
+  z-index:999999!important;
+  align-items:center!important;
+  justify-content:center!important;
+  background:rgba(0,0,0,.9)!important;
+  backdrop-filter:blur(6px)!important;
+  overflow:auto!important;
+  padding:24px!important;
+}
+#aboutOverlay .aboutBox,
+#aboutOverlay .completeAboutBox{
+  max-width:1180px!important;
+  width:min(1180px,94vw)!important;
+  max-height:90vh!important;
+  overflow:auto!important;
+  text-align:center!important;
+  border-radius:28px!important;
+  padding:28px!important;
+  border:3px solid rgba(117,234,255,.65)!important;
+  background:radial-gradient(circle at top,rgba(22,44,86,.98),rgba(0,0,0,.96))!important;
+  box-shadow:0 0 55px rgba(117,234,255,.35)!important;
+}
+#aboutOverlay h1{
+  font-size:46px!important;
+  margin:0 0 12px!important;
+  color:#75eaff!important;
+  text-shadow:0 0 20px rgba(117,234,255,.8)!important;
+}
+.aboutInfographicGrid{
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  gap:18px!important;
+  margin-top:18px!important;
+}
+.aboutInfographicCard{
+  border:2px solid rgba(117,234,255,.35)!important;
+  border-radius:22px!important;
+  padding:12px!important;
+  background:rgba(0,0,0,.35)!important;
+  box-shadow:0 0 22px rgba(117,234,255,.18)!important;
+}
+.aboutInfographicCard h3{
+  margin:8px 4px 12px 4px!important;
+  font-size:24px!important;
+  color:#fff!important;
+}
+.aboutInfographic{
+  width:100%!important;
+  border-radius:16px!important;
+  display:block!important;
+  cursor:pointer!important;
+  box-shadow:0 0 18px rgba(0,0,0,.5)!important;
+  transition:.22s ease!important;
+}
+.aboutInfographic:hover{
+  transform:scale(1.015)!important;
+  box-shadow:0 0 24px rgba(117,234,255,.45)!important;
+}
+.aboutCredit{
+  font-size:20px!important;
+  color:#ffe082!important;
+  margin-top:18px!important;
+}
+@media(max-width:900px){
+  .aboutInfographicGrid{grid-template-columns:1fr!important;}
+  #setup h1{font-size:34px!important;}
+}
+
+
+/* ===== PHASE 1 CLEAN: KEYBOARD SAFE AREA ONLY =====
+   - Extracted inline audio files out of index.html to prevent raw long text display.
+   - Adds tablet on-screen numeric keypad.
+   - Does NOT change gameplay, HUD, distance, boss, combo, or report layout.
+*/
+#tabletKeypad{
+  display:none;
+  position:absolute;
+  z-index:90;
+  left:50%;
+  bottom:calc(92px + env(safe-area-inset-bottom,0px));
+  transform:translateX(-50%);
+  width:min(480px,72vw);
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  padding:10px;
+  border-radius:18px;
+  background:rgba(0,12,28,.76);
+  border:2px solid rgba(117,234,255,.38);
+  box-shadow:0 0 28px rgba(117,234,255,.24);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+}
+#tabletKeypad button{
+  font-size:24px;
+  padding:9px 0;
+  border-radius:14px;
+  background:linear-gradient(180deg,#2fc7ff,#1684c4);
+  color:#02101c;
+  font-weight:bold;
+  touch-action:manipulation;
+}
+#tabletKeypad button[data-key="enter"]{background:linear-gradient(180deg,#ffd966,#f59e0b);}
+#tabletKeypad button[data-key="back"]{background:linear-gradient(180deg,#9fb7c9,#51687a);color:#fff;}
+body.tabletKeyboardSafe #tabletKeypad{display:grid;}
+body.tabletKeyboardSafe #answerWrap{bottom:calc(18px + env(safe-area-inset-bottom,0px))!important;}
+body.tabletKeyboardSafe #answer{width:240px!important;font-size:30px!important;}
+body.tabletKeyboardSafe #answerHintText::before{content:"ใช้แป้นตัวเลขบนจอ • ";color:#ffd966;}
+@media (max-height:760px) and (pointer:coarse){
+  body.tabletKeyboardSafe #tabletKeypad{
+    width:min(410px,66vw);
+    bottom:72px;
+    gap:6px;
+    padding:8px;
+  }
+  body.tabletKeyboardSafe #tabletKeypad button{font-size:20px;padding:7px 0;}
+  body.tabletKeyboardSafe #answer{width:210px!important;font-size:26px!important;}
+}
+
+
+/* ===== PHASE 1B FORCE: NO VIRTUAL KEYBOARD ON TABLET ===== */
+body.tabletKeyboardSafe #answer{
+  pointer-events:none!important;
+  caret-color:transparent!important;
+  user-select:none!important;
+  -webkit-user-select:none!important;
+  touch-action:none!important;
+}
+body.tabletKeyboardSafe #answerWrap{
+  bottom:calc(18px + env(safe-area-inset-bottom,0px))!important;
+  z-index:92!important;
+}
+body.tabletKeyboardSafe #tabletKeypad{
+  display:grid!important;
+}
+#tabletKeypad{
+  -webkit-user-select:none;
+  user-select:none;
+}
+#tabletKeypad button{
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+
+
+/* ===== PHASE 1C: LEFT SHIP KEYPAD POSITION ONLY =====
+   Change only the on-screen number keypad position/style.
+   No gameplay logic changes.
+*/
+body.tabletKeyboardSafe #tabletKeypad{
+  left:34px!important;
+  right:auto!important;
+  bottom:calc(24px + env(safe-area-inset-bottom,0px))!important;
+  transform:none!important;
+  width:260px!important;
+  grid-template-columns:repeat(3,1fr)!important;
+  gap:7px!important;
+  padding:10px!important;
+  border-radius:18px!important;
+  background:rgba(0,14,32,.76)!important;
+  border:2px solid rgba(117,234,255,.42)!important;
+  box-shadow:0 0 28px rgba(117,234,255,.26), inset 0 0 16px rgba(255,255,255,.05)!important;
+}
+body.tabletKeyboardSafe #tabletKeypad button{
+  font-size:22px!important;
+  min-height:44px!important;
+  padding:7px 0!important;
+  border-radius:13px!important;
+}
+body.tabletKeyboardSafe #answerWrap{
+  left:34px!important;
+  bottom:calc(238px + env(safe-area-inset-bottom,0px))!important;
+  transform:none!important;
+  text-align:left!important;
+  z-index:92!important;
+}
+body.tabletKeyboardSafe #answer{
+  width:260px!important;
+  font-size:28px!important;
+}
+body.tabletKeyboardSafe #answerWrap .small{
+  text-align:center!important;
+  width:260px!important;
+  font-size:13px!important;
+}
+
+/* When the screen is short, keep keypad compact and still left-bottom. */
+@media (max-height:760px) and (pointer:coarse){
+  body.tabletKeyboardSafe #tabletKeypad{
+    left:24px!important;
+    bottom:calc(16px + env(safe-area-inset-bottom,0px))!important;
+    width:230px!important;
+    gap:6px!important;
+    padding:8px!important;
+  }
+  body.tabletKeyboardSafe #tabletKeypad button{
+    font-size:19px!important;
+    min-height:38px!important;
+    padding:5px 0!important;
+  }
+  body.tabletKeyboardSafe #answerWrap{
+    left:24px!important;
+    bottom:calc(202px + env(safe-area-inset-bottom,0px))!important;
+  }
+  body.tabletKeyboardSafe #answer{
+    width:230px!important;
+    font-size:24px!important;
+  }
+  body.tabletKeyboardSafe #answerWrap .small{
+    width:230px!important;
+  }
+}
+
+/* On very narrow portrait/tablet views, center it to avoid clipping. */
+@media (max-width:700px) and (pointer:coarse){
+  body.tabletKeyboardSafe #tabletKeypad{
+    left:50%!important;
+    transform:translateX(-50%)!important;
+  }
+  body.tabletKeyboardSafe #answerWrap{
+    left:50%!important;
+    transform:translateX(-50%)!important;
+    text-align:center!important;
+  }
+}
+
+
+/* ===== PHASE 1D: LEFT SHIP KEYPAD FUNCTION PATCH =====
+   Adds/forces the numeric keypad as a real in-game control.
+   It can be used on desktop, iPad, and tablet. Gameplay logic is not changed.
+*/
+#tabletKeypad.leftShipKeypad,
+#tabletKeypad{
+  display:grid!important;
+  position:absolute!important;
+  z-index:90!important;
+  left:34px!important;
+  right:auto!important;
+  bottom:calc(24px + env(safe-area-inset-bottom,0px))!important;
+  transform:none!important;
+  width:260px!important;
+  grid-template-columns:repeat(3,1fr)!important;
+  gap:7px!important;
+  padding:10px!important;
+  border-radius:18px!important;
+  background:rgba(0,14,32,.78)!important;
+  border:2px solid rgba(117,234,255,.45)!important;
+  box-shadow:0 0 28px rgba(117,234,255,.28), inset 0 0 16px rgba(255,255,255,.05)!important;
+  -webkit-user-select:none!important;
+  user-select:none!important;
+}
+#tabletKeypad button{
+  font-size:22px!important;
+  min-height:44px!important;
+  padding:7px 0!important;
+  border-radius:13px!important;
+  background:linear-gradient(180deg,#2fc7ff,#1684c4)!important;
+  color:#02101c!important;
+  font-weight:bold!important;
+  touch-action:manipulation!important;
+  -webkit-tap-highlight-color:transparent!important;
+}
+#tabletKeypad button[data-key="enter"]{
+  background:linear-gradient(180deg,#ffd966,#f59e0b)!important;
+}
+#tabletKeypad button[data-key="clear"],
+#tabletKeypad button[data-key="back"]{
+  background:linear-gradient(180deg,#9fb7c9,#51687a)!important;
+  color:#fff!important;
+}
+#answerWrap{
+  z-index:92!important;
+}
+body.tabletKeyboardSafe #answerWrap,
+#answerWrap{
+  left:34px!important;
+  bottom:calc(238px + env(safe-area-inset-bottom,0px))!important;
+  transform:none!important;
+  text-align:left!important;
+}
+#answer{
+  width:260px!important;
+  font-size:28px!important;
+}
+#answerWrap .small{
+  text-align:center!important;
+  width:260px!important;
+  font-size:13px!important;
+}
+@media (max-height:760px){
+  #tabletKeypad{
+    left:24px!important;
+    bottom:calc(16px + env(safe-area-inset-bottom,0px))!important;
+    width:230px!important;
+    gap:6px!important;
+    padding:8px!important;
+  }
+  #tabletKeypad button{
+    font-size:19px!important;
+    min-height:38px!important;
+    padding:5px 0!important;
+  }
+  body.tabletKeyboardSafe #answerWrap,
+  #answerWrap{
+    left:24px!important;
+    bottom:calc(202px + env(safe-area-inset-bottom,0px))!important;
+  }
+  #answer{
+    width:230px!important;
+    font-size:24px!important;
+  }
+  #answerWrap .small{
+    width:230px!important;
+  }
+}
+
+
+/* ===== PHASE 1E: KEYPAD TOUCH FIX ===== */
+#tabletKeypad,
+#tabletKeypad *{
+  pointer-events:auto!important;
+}
+#tabletKeypad{
+  z-index:999!important;
+}
+#tabletKeypad button{
+  cursor:pointer!important;
+  touch-action:manipulation!important;
+  -webkit-user-select:none!important;
+  user-select:none!important;
+}
+
+
+/* ===== PHASE 1F: COMPACT REAL KEYPAD =====
+   - Smaller keypad to reduce blocking the ship.
+   - Uses direct submit logic instead of simulated keyboard event.
+   - No gameplay system changes.
+*/
+#tabletKeypad{
+  display:grid!important;
+  position:absolute!important;
+  z-index:160!important;
+  left:10px!important;
+  right:auto!important;
+  bottom:calc(10px + env(safe-area-inset-bottom,0px))!important;
+  transform:none!important;
+  width:180px!important;
+  grid-template-columns:repeat(3,1fr)!important;
+  gap:5px!important;
+  padding:7px!important;
+  border-radius:14px!important;
+  background:rgba(0,14,32,.70)!important;
+  border:2px solid rgba(117,234,255,.38)!important;
+  box-shadow:0 0 18px rgba(117,234,255,.20), inset 0 0 12px rgba(255,255,255,.04)!important;
+  -webkit-user-select:none!important;
+  user-select:none!important;
+  pointer-events:auto!important;
+}
+#tabletKeypad button{
+  font-size:18px!important;
+  min-height:34px!important;
+  padding:4px 0!important;
+  border-radius:10px!important;
+  background:linear-gradient(180deg,#2fc7ff,#1684c4)!important;
+  color:#02101c!important;
+  font-weight:bold!important;
+  touch-action:manipulation!important;
+  -webkit-tap-highlight-color:transparent!important;
+  pointer-events:auto!important;
+  cursor:pointer!important;
+}
+#tabletKeypad button[data-key="enter"]{
+  background:linear-gradient(180deg,#ffd966,#f59e0b)!important;
+  font-size:16px!important;
+}
+#tabletKeypad button[data-key="clear"],
+#tabletKeypad button[data-key="back"]{
+  background:linear-gradient(180deg,#9fb7c9,#51687a)!important;
+  color:#fff!important;
+}
+#answerWrap{
+  z-index:162!important;
+  left:10px!important;
+  bottom:calc(162px + env(safe-area-inset-bottom,0px))!important;
+  transform:none!important;
+  text-align:left!important;
+}
+#answer{
+  width:180px!important;
+  font-size:22px!important;
+  padding:5px!important;
+}
+#answerWrap .small{
+  width:180px!important;
+  text-align:center!important;
+  font-size:11px!important;
+}
+body.tabletKeyboardSafe #answer{
+  pointer-events:none!important;
+  caret-color:transparent!important;
+}
+@media (max-height:760px){
+  #tabletKeypad{
+    width:165px!important;
+    left:8px!important;
+    bottom:8px!important;
+    gap:4px!important;
+    padding:6px!important;
+  }
+  #tabletKeypad button{
+    min-height:31px!important;
+    font-size:16px!important;
+  }
+  #answerWrap{
+    left:8px!important;
+    bottom:145px!important;
+  }
+  #answer{
+    width:165px!important;
+    font-size:20px!important;
+  }
+  #answerWrap .small{
+    width:165px!important;
+  }
+}
+
+
+/* ===== TABLET CONTROL VER. 1.0 =====
+   External control layer outside the game canvas.
+   Fixes tablet keyboard and blocked touch problems.
+   Does not change gameplay systems.
+*/
+#tabletControlLayer{
+  display:none;
+  position:fixed;
+  left:12px;
+  bottom:calc(12px + env(safe-area-inset-bottom,0px));
+  z-index:999999;
+  width:178px;
+  padding:8px;
+  border-radius:16px;
+  background:rgba(0,14,32,.78);
+  border:2px solid rgba(117,234,255,.45);
+  box-shadow:0 0 28px rgba(117,234,255,.28), inset 0 0 14px rgba(255,255,255,.06);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  pointer-events:auto;
+  user-select:none;
+  -webkit-user-select:none;
+}
+body.tabletControlActive #tabletControlLayer{
+  display:block;
+}
+#tabletAnswerDisplay{
+  width:100%;
+  min-height:38px;
+  margin-bottom:7px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:11px;
+  background:rgba(0,0,0,.68);
+  border:2px solid rgba(117,234,255,.75);
+  color:#fff;
+  font-size:22px;
+  font-weight:bold;
+  box-shadow:0 0 14px rgba(117,234,255,.24);
+}
+#tabletAnswerDisplay.empty{
+  color:rgba(255,255,255,.48);
+  font-size:16px;
+}
+#tabletKeypadV1{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:5px;
+}
+#tabletKeypadV1 button{
+  pointer-events:auto!important;
+  min-height:34px;
+  padding:4px 0;
+  border-radius:10px;
+  border:0;
+  background:linear-gradient(180deg,#2fc7ff,#1684c4);
+  color:#02101c;
+  font-weight:bold;
+  font-size:18px;
+  line-height:1;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+  cursor:pointer;
+}
+#tabletKeypadV1 button[data-key="enter"]{
+  background:linear-gradient(180deg,#ffd966,#f59e0b);
+  font-size:15px;
+}
+#tabletKeypadV1 button[data-key="back"]{
+  background:linear-gradient(180deg,#9fb7c9,#51687a);
+  color:#fff;
+}
+body.tabletControlActive #answerWrap{
+  display:none!important;
+}
+body.tabletControlActive #answer{
+  pointer-events:none!important;
+}
+@media (max-height:760px){
+  #tabletControlLayer{
+    left:8px;
+    bottom:8px;
+    width:162px;
+    padding:7px;
+  }
+  #tabletAnswerDisplay{
+    min-height:32px;
+    font-size:19px;
+    margin-bottom:5px;
+  }
+  #tabletKeypadV1{
+    gap:4px;
+  }
+  #tabletKeypadV1 button{
+    min-height:30px;
+    font-size:16px;
+    border-radius:8px;
+  }
+  #tabletKeypadV1 button[data-key="enter"]{
+    font-size:14px;
+  }
+}
+
+/* TABLET CONTROL V2 BOTTOM BAR */
+#tabletControlLayer{display:none!important;position:fixed!important;left:0!important;right:0!important;bottom:0!important;z-index:2147483000!important;width:100vw!important;box-sizing:border-box!important;padding:5px 8px calc(5px + env(safe-area-inset-bottom,0px))!important;background:rgba(0,10,25,.9)!important;border-top:2px solid rgba(117,234,255,.55)!important;pointer-events:auto!important}
+body.tabletControlActive #tabletControlLayer{display:flex!important;align-items:center!important;gap:7px!important}
+#tabletAnswerDisplay{flex:0 0 92px!important;min-height:38px!important;margin:0!important;display:flex!important;align-items:center!important;justify-content:center!important;border-radius:9px!important;background:rgba(0,0,0,.72)!important;border:2px solid rgba(117,234,255,.78)!important;color:#fff!important;font-size:20px!important;font-weight:bold!important}
+#tabletAnswerDisplay.empty{color:rgba(255,255,255,.48)!important;font-size:14px!important}
+#tabletKeypadV1{flex:1!important;display:grid!important;grid-template-columns:repeat(12,minmax(0,1fr))!important;gap:5px!important}
+#tabletKeypadV1 button{pointer-events:auto!important;min-width:0!important;min-height:40px!important;padding:4px 0!important;border-radius:9px!important;border:0!important;background:linear-gradient(180deg,#2fc7ff,#1684c4)!important;color:#02101c!important;font-weight:bold!important;font-size:19px!important;touch-action:manipulation!important;-webkit-tap-highlight-color:transparent!important}
+#tabletKeypadV1 button[data-key="enter"]{background:linear-gradient(180deg,#ffd966,#f59e0b)!important;font-size:15px!important}
+#tabletKeypadV1 button[data-key="back"]{background:linear-gradient(180deg,#9fb7c9,#51687a)!important;color:#fff!important}
+body.tabletControlActive #answerWrap{display:none!important}
+@media(max-width:900px){#tabletControlLayer{gap:4px!important;padding-left:4px!important;padding-right:4px!important}#tabletAnswerDisplay{flex-basis:66px!important;font-size:16px!important}#tabletKeypadV1{gap:3px!important}#tabletKeypadV1 button{min-height:38px!important;font-size:16px!important}#tabletKeypadV1 button[data-key="enter"]{font-size:13px!important}}
+/* TABLET CONTROL V2C FORCE VISIBLE */
+#gameScreen.active ~ #tabletControlLayer,
+body.tabletControlActive #tabletControlLayer{
+  display:flex!important;
+  align-items:center!important;
+  gap:7px!important;
+}
+#tabletControlLayer{
+  z-index:2147483647!important;
+  pointer-events:auto!important;
+}
+#tabletControlLayer *{
+  pointer-events:auto!important;
+}
+
+/* TABLET CONTROL V2D REAL TOUCH + ABOUT FIX */
+#tabletControlLayer{display:none!important}
+body.tabletGameControls #tabletControlLayer{
+ display:flex!important;align-items:center!important;gap:7px!important;
+ visibility:visible!important;opacity:1!important;pointer-events:auto!important;
+}
+body.tabletGameControls #tabletControlLayer,
+body.tabletGameControls #tabletControlLayer *{pointer-events:auto!important}
+body:not(.tabletGameControls) #tabletControlLayer{display:none!important;pointer-events:none!important}
+
+
+/* ===== TABLET CONTROL V2F: SINGLE INPUT FIX =====
+   Fixes two points:
+   1) Real clickable/touchable buttons.
+   2) Removes answer display from bottom keyboard bar.
+*/
+#tabletAnswerDisplay{display:none!important;}
+#tabletControlLayer{
+  display:none!important;
+  position:fixed!important;
+  left:0!important;
+  right:0!important;
+  bottom:0!important;
+  z-index:2147483647!important;
+  width:100vw!important;
+  box-sizing:border-box!important;
+  padding:5px 8px calc(5px + env(safe-area-inset-bottom,0px))!important;
+  background:rgba(0,10,25,.92)!important;
+  border-top:2px solid rgba(117,234,255,.58)!important;
+  pointer-events:auto!important;
+  touch-action:manipulation!important;
+}
+body.tabletControlBarActive #tabletControlLayer{
+  display:block!important;
+}
+#tabletControlLayer,
+#tabletControlLayer *{
+  pointer-events:auto!important;
+}
+#tabletKeypadV1{
+  width:100%!important;
+  display:grid!important;
+  grid-template-columns:repeat(12,minmax(0,1fr))!important;
+  gap:5px!important;
+}
+#tabletKeypadV1 button{
+  pointer-events:auto!important;
+  min-height:40px!important;
+  padding:4px 0!important;
+  border-radius:9px!important;
+  border:0!important;
+  background:linear-gradient(180deg,#2fc7ff,#1684c4)!important;
+  color:#02101c!important;
+  font-weight:bold!important;
+  font-size:19px!important;
+  line-height:1!important;
+  touch-action:manipulation!important;
+  -webkit-tap-highlight-color:transparent!important;
+  cursor:pointer!important;
+}
+#tabletKeypadV1 button[data-key="enter"]{
+  background:linear-gradient(180deg,#ffd966,#f59e0b)!important;
+  font-size:15px!important;
+}
+#tabletKeypadV1 button[data-key="back"]{
+  background:linear-gradient(180deg,#9fb7c9,#51687a)!important;
+  color:#fff!important;
+}
+/* Keep the original answer box under the ship visible. */
+body.tabletControlBarActive #answerWrap{
+  display:block!important;
+}
+/* Prevent the real tablet keyboard from appearing when touching the original answer box. */
+body.tabletControlBarActive #answer{
+  pointer-events:none!important;
+  caret-color:transparent!important;
+}
+@media(max-width:900px){
+  #tabletControlLayer{padding-left:4px!important;padding-right:4px!important;}
+  #tabletKeypadV1{gap:3px!important;}
+  #tabletKeypadV1 button{min-height:38px!important;font-size:16px!important;border-radius:7px!important;}
+  #tabletKeypadV1 button[data-key="enter"]{font-size:13px!important;}
+}
+
+
+/* ===== TABLET UI + BOSS INTRO MODAL FIX =====
+   Fix 1: prevent HP / Question / Distance Visual overlap on iPad/tablet landscape.
+   Fix 2: make Planet Reached / Boss Intro modal fit the viewport with scroll and reachable button.
+   Keeps Tablet Control V2F unchanged.
+*/
+
+/* Boss intro modal: always fit inside screen and allow scrolling */
+#summary{
+  overflow-y:auto!important;
+  -webkit-overflow-scrolling:touch!important;
+  padding:10px 0 calc(78px + env(safe-area-inset-bottom,0px))!important;
+}
+#summary .modalBox{
+  width:min(900px,92vw)!important;
+  max-height:calc(100dvh - 105px)!important;
+  overflow-y:auto!important;
+  margin:2vh auto!important;
+  padding:18px!important;
+  box-sizing:border-box!important;
+}
+#summary .modalBox h1{
+  font-size:clamp(32px,5.2vw,52px)!important;
+  margin:8px 0 10px!important;
+}
+#summary #bossIntroImage{
+  width:min(520px,64vw)!important;
+  max-height:38dvh!important;
+  object-fit:contain!important;
+}
+#summary #bossIntroTitle{
+  font-size:clamp(24px,4vw,44px)!important;
+  margin-top:6px!important;
+}
+#summary #bossIntroSub,
+#summary #bossIntroQuote{
+  font-size:clamp(16px,2.4vw,26px)!important;
+  margin:6px 0 10px!important;
+}
+#summary button{
+  position:sticky!important;
+  bottom:0!important;
+  z-index:5!important;
+  margin-top:8px!important;
+}
+
+/* Tablet landscape / 4:3 safe HUD layout */
+@media (pointer:coarse), (max-aspect-ratio: 4/3), (max-width:1180px){
+  #hud{
+    left:12px!important;
+    top:12px!important;
+    width:30vw!important;
+    min-width:260px!important;
+    max-width:420px!important;
+    padding:10px 12px!important;
+    font-size:clamp(16px,2.1vw,24px)!important;
+    line-height:1.35!important;
+    z-index:35!important;
+  }
+  #hud .bar{
+    width:min(190px,16vw)!important;
+  }
+  #aura{
+    top:4px!important;
+    left:32vw!important;
+    width:38vw!important;
+    font-size:clamp(16px,2vw,24px)!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    z-index:34!important;
+  }
+  #question{
+    top:58px!important;
+    left:32vw!important;
+    width:40vw!important;
+    font-size:clamp(46px,7.2vw,78px)!important;
+    line-height:1.05!important;
+    min-height:unset!important;
+    padding:14px 18px!important;
+    box-sizing:border-box!important;
+    border-radius:22px!important;
+    background:rgba(0,0,0,.38)!important;
+    border:2px solid rgba(117,234,255,.65)!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    z-index:32!important;
+  }
+  #timer{
+    top:248px!important;
+    left:36vw!important;
+    width:34vw!important;
+    font-size:clamp(24px,3.2vw,38px)!important;
+    z-index:33!important;
+  }
+  #pilotLine{
+    top:302px!important;
+    left:38vw!important;
+    width:30vw!important;
+    font-size:clamp(18px,2.4vw,28px)!important;
+    z-index:33!important;
+  }
+  #distanceMiniMap{
+    top:112px!important;
+    right:150px!important;
+    width:360px!important;
+    height:90px!important;
+    transform:scale(.72)!important;
+    transform-origin:top right!important;
+    z-index:31!important;
+  }
+  #planetMini{
+    top:108px!important;
+    right:42px!important;
+    width:82px!important;
+    z-index:30!important;
+  }
+  #soundBtn{
+    top:12px!important;
+    right:132px!important;
+    font-size:clamp(14px,2vw,18px)!important;
+    padding:8px 12px!important;
+    z-index:45!important;
+  }
+  #pauseBtn{
+    top:12px!important;
+    right:12px!important;
+    font-size:clamp(14px,2vw,18px)!important;
+    padding:8px 12px!important;
+    z-index:45!important;
+  }
+
+  /* Keep gameplay elements lower than the tablet HUD area */
+  #ship{
+    top:58vh!important;
+  }
+  #enemy{
+    top:60vh!important;
+  }
+}
+
+/* Very short tablet screens */
+@media (max-height:760px) and (pointer:coarse){
+  #summary .modalBox{
+    max-height:calc(100dvh - 88px)!important;
+    margin:1vh auto!important;
+    padding:14px!important;
+  }
+  #summary #bossIntroImage{
+    max-height:31dvh!important;
+    width:min(430px,58vw)!important;
+  }
+  #summary .modalBox h1{
+    font-size:34px!important;
+  }
+  #summary button{
+    font-size:16px!important;
+    padding:8px 12px!important;
+  }
+  #question{
+    top:50px!important;
+    font-size:clamp(40px,6.4vw,64px)!important;
+    padding:10px 14px!important;
+  }
+  #timer{
+    top:205px!important;
+  }
+  #pilotLine{
+    top:250px!important;
+  }
+  #distanceMiniMap{
+    top:96px!important;
+    right:138px!important;
+    transform:scale(.64)!important;
+  }
+  #planetMini{
+    top:92px!important;
+    width:72px!important;
+  }
+}
+
+
+/* ===== TABLET TOPBAR STABLE GRID =====
+   This replaces the previous tablet topbar attempt.
+   It applies when Tablet Control V2F is active, not by iPad media detection.
+   Layout: Status 25% | Question 50% | Distance 25%
+*/
+body.tabletControlBarActive #game{
+  --tablet-topbar-h: 138px;
+}
+
+/* LEFT 25% : Status */
+body.tabletControlBarActive #hud{
+  position:absolute!important;
+  left:0.8vw!important;
+  top:8px!important;
+  width:23.4vw!important;
+  min-width:0!important;
+  max-width:23.4vw!important;
+  height:122px!important;
+  box-sizing:border-box!important;
+  padding:8px 10px!important;
+  overflow:hidden!important;
+  border-radius:16px!important;
+  z-index:60!important;
+  font-size:clamp(12px,1.45vw,18px)!important;
+  line-height:1.25!important;
+  transform:none!important;
+}
+body.tabletControlBarActive #hud .bar{
+  width:clamp(70px,12vw,170px)!important;
+  height:10px!important;
+}
+
+/* CENTER 50% : Aura + Question */
+body.tabletControlBarActive #aura{
+  position:absolute!important;
+  left:25.5vw!important;
+  top:4px!important;
+  width:49vw!important;
+  z-index:61!important;
+  font-size:clamp(13px,1.55vw,20px)!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  text-align:center!important;
+}
+
+body.tabletControlBarActive #question{
+  position:absolute!important;
+  left:25.5vw!important;
+  top:34px!important;
+  width:49vw!important;
+  height:96px!important;
+  min-height:0!important;
+  box-sizing:border-box!important;
+  padding:8px 14px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  z-index:59!important;
+  font-size:clamp(34px,5.6vw,66px)!important;
+  line-height:1!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  border-radius:18px!important;
+  background:rgba(0,0,0,.34)!important;
+  border:2px solid rgba(117,234,255,.65)!important;
+}
+
+/* RIGHT 25% : Distance */
+body.tabletControlBarActive #distanceMiniMap{
+  position:absolute!important;
+  left:75.5vw!important;
+  right:auto!important;
+  top:42px!important;
+  width:23.5vw!important;
+  height:82px!important;
+  transform:none!important;
+  transform-origin:top left!important;
+  z-index:58!important;
+}
+body.tabletControlBarActive #miniRoute{
+  left:8px!important;
+  right:52px!important;
+  top:38px!important;
+}
+body.tabletControlBarActive #miniShip{
+  top:19px!important;
+  transform:scale(.8)!important;
+  transform-origin:center!important;
+}
+body.tabletControlBarActive #miniPlanet{
+  right:2px!important;
+  top:10px!important;
+  width:54px!important;
+}
+body.tabletControlBarActive #miniTargetLabel,
+body.tabletControlBarActive #planetMini{
+  display:none!important;
+}
+
+/* Move action buttons below the topbar so they do not compete with Distance */
+body.tabletControlBarActive #soundBtn{
+  top:calc(var(--tablet-topbar-h) + 6px)!important;
+  right:128px!important;
+  z-index:70!important;
+  font-size:clamp(13px,1.8vw,17px)!important;
+  padding:8px 12px!important;
+}
+body.tabletControlBarActive #pauseBtn{
+  top:calc(var(--tablet-topbar-h) + 6px)!important;
+  right:12px!important;
+  z-index:70!important;
+  font-size:clamp(13px,1.8vw,17px)!important;
+  padding:8px 12px!important;
+}
+
+/* Timer / Pilot line placed below topbar */
+body.tabletControlBarActive #timer{
+  top:calc(var(--tablet-topbar-h) + 48px)!important;
+  left:25vw!important;
+  width:50vw!important;
+  z-index:50!important;
+  font-size:clamp(22px,3vw,34px)!important;
+}
+body.tabletControlBarActive #pilotLine{
+  top:calc(var(--tablet-topbar-h) + 96px)!important;
+  left:35vw!important;
+  width:30vw!important;
+  z-index:50!important;
+  font-size:clamp(16px,2vw,24px)!important;
+}
+
+/* For short iPad Safari viewport */
+@media(max-height:760px){
+  body.tabletControlBarActive #game{
+    --tablet-topbar-h: 118px;
+  }
+  body.tabletControlBarActive #hud{
+    top:6px!important;
+    height:104px!important;
+    padding:6px 8px!important;
+    font-size:clamp(11px,1.35vw,15px)!important;
+  }
+  body.tabletControlBarActive #hud .bar{
+    width:clamp(60px,10.5vw,135px)!important;
+    height:9px!important;
+  }
+  body.tabletControlBarActive #aura{
+    top:2px!important;
+    font-size:clamp(12px,1.4vw,18px)!important;
+  }
+  body.tabletControlBarActive #question{
+    top:28px!important;
+    height:82px!important;
+    font-size:clamp(30px,5vw,56px)!important;
+    padding:7px 12px!important;
+  }
+  body.tabletControlBarActive #distanceMiniMap{
+    top:34px!important;
+    height:72px!important;
+  }
+  body.tabletControlBarActive #miniPlanet{
+    width:48px!important;
+  }
+  body.tabletControlBarActive #soundBtn,
+  body.tabletControlBarActive #pauseBtn{
+    top:calc(var(--tablet-topbar-h) + 4px)!important;
+  }
+  body.tabletControlBarActive #timer{
+    top:calc(var(--tablet-topbar-h) + 40px)!important;
+  }
+  body.tabletControlBarActive #pilotLine{
+    top:calc(var(--tablet-topbar-h) + 80px)!important;
+  }
+}
+
+
+/* ===== TABLET TOPBAR FIX 2 =====
+   User feedback:
+   1) Swap Distance area with Pause/Sound area: Pause/Sound stay top-right, Distance moves below.
+   2) Question must sit in the middle and must not overlap HP bar.
+*/
+body.tabletControlBarActive #game{
+  --tablet-topbar-h: 148px!important;
+}
+
+/* Left status panel: hard cap at 25% */
+body.tabletControlBarActive #hud{
+  left:1vw!important;
+  top:10px!important;
+  width:23vw!important;
+  min-width:0!important;
+  max-width:23vw!important;
+  height:126px!important;
+  padding:8px 10px!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+  transform:none!important;
+  z-index:60!important;
+}
+body.tabletControlBarActive #hud .bar{
+  width:clamp(58px,10vw,130px)!important;
+}
+
+/* Center question column: start after status panel, center between status and right controls */
+body.tabletControlBarActive #aura{
+  left:31vw!important;
+  top:6px!important;
+  width:38vw!important;
+  text-align:center!important;
+  font-size:clamp(13px,1.55vw,20px)!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  z-index:61!important;
+}
+
+body.tabletControlBarActive #question{
+  left:31vw!important;
+  top:38px!important;
+  width:38vw!important;
+  height:94px!important;
+  min-height:0!important;
+  box-sizing:border-box!important;
+  padding:8px 14px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  font-size:clamp(34px,5.5vw,64px)!important;
+  line-height:1!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  border-radius:18px!important;
+  background:rgba(0,0,0,.34)!important;
+  border:2px solid rgba(117,234,255,.65)!important;
+  z-index:59!important;
+}
+
+/* Top-right buttons: stay on top */
+body.tabletControlBarActive #soundBtn{
+  top:12px!important;
+  right:128px!important;
+  z-index:75!important;
+  font-size:clamp(13px,1.8vw,17px)!important;
+  padding:8px 12px!important;
+}
+body.tabletControlBarActive #pauseBtn{
+  top:12px!important;
+  right:12px!important;
+  z-index:75!important;
+  font-size:clamp(13px,1.8vw,17px)!important;
+  padding:8px 12px!important;
+}
+
+/* Distance moves below Sound/Pause, using right 25% area */
+body.tabletControlBarActive #distanceMiniMap{
+  left:71vw!important;
+  right:auto!important;
+  top:80px!important;
+  width:27vw!important;
+  height:70px!important;
+  transform:none!important;
+  transform-origin:top left!important;
+  z-index:58!important;
+}
+body.tabletControlBarActive #miniRoute{
+  left:8px!important;
+  right:52px!important;
+  top:34px!important;
+}
+body.tabletControlBarActive #miniShip{
+  top:16px!important;
+  transform:scale(.78)!important;
+  transform-origin:center!important;
+}
+body.tabletControlBarActive #miniPlanet{
+  right:2px!important;
+  top:6px!important;
+  width:50px!important;
+}
+body.tabletControlBarActive #miniTargetLabel,
+body.tabletControlBarActive #planetMini{
+  display:none!important;
+}
+
+/* Timer / pilot lower, clear from question */
+body.tabletControlBarActive #timer{
+  top:calc(var(--tablet-topbar-h) + 48px)!important;
+  left:26vw!important;
+  width:48vw!important;
+  font-size:clamp(22px,3vw,34px)!important;
+  z-index:50!important;
+}
+body.tabletControlBarActive #pilotLine{
+  top:calc(var(--tablet-topbar-h) + 96px)!important;
+  left:35vw!important;
+  width:30vw!important;
+  font-size:clamp(16px,2vw,24px)!important;
+  z-index:50!important;
+}
+
+/* Short Safari viewport */
+@media(max-height:760px){
+  body.tabletControlBarActive #game{
+    --tablet-topbar-h:132px!important;
+  }
+  body.tabletControlBarActive #hud{
+    top:8px!important;
+    height:112px!important;
+    font-size:clamp(11px,1.35vw,15px)!important;
+    padding:6px 8px!important;
+  }
+  body.tabletControlBarActive #hud .bar{
+    width:clamp(50px,9vw,115px)!important;
+  }
+  body.tabletControlBarActive #aura{
+    left:31vw!important;
+    width:38vw!important;
+    top:4px!important;
+  }
+  body.tabletControlBarActive #question{
+    left:31vw!important;
+    width:38vw!important;
+    top:34px!important;
+    height:78px!important;
+    font-size:clamp(30px,5vw,54px)!important;
+  }
+  body.tabletControlBarActive #distanceMiniMap{
+    left:71vw!important;
+    top:72px!important;
+    width:27vw!important;
+    height:62px!important;
+  }
+  body.tabletControlBarActive #miniPlanet{
+    width:44px!important;
+  }
+  body.tabletControlBarActive #timer{
+    top:calc(var(--tablet-topbar-h) + 40px)!important;
+  }
+  body.tabletControlBarActive #pilotLine{
+    top:calc(var(--tablet-topbar-h) + 78px)!important;
+  }
+}
+
+
+/* ===== TABLET UX POLISH: QUESTION SIZE + ABOUT IN PAUSE + EXTERNAL KEYBOARD ===== */
+
+/* 1) Reduce question frame so it no longer collides with status panel */
+body.tabletControlBarActive #question{
+  left:52vw!important;
+  top:42px!important;
+  width:36vw!important;
+  max-width:36vw!important;
+  min-width:0!important;
+  height:78px!important;
+  padding:6px 14px!important;
+  font-size:clamp(28px,4.4vw,52px)!important;
+  border-radius:18px!important;
+}
+body.tabletControlBarActive #aura{
+  left:52vw!important;
+  width:36vw!important;
+  top:8px!important;
+  font-size:clamp(12px,1.45vw,18px)!important;
+}
+@media (max-height:760px) and (pointer:coarse){
+  body.tabletControlBarActive #question{
+    left:52vw!important;
+    width:36vw!important;
+    max-width:36vw!important;
+    top:38px!important;
+    height:68px!important;
+    font-size:clamp(26px,4vw,46px)!important;
+  }
+  body.tabletControlBarActive #aura{
+    left:52vw!important;
+    width:36vw!important;
+  }
+}
+
+/* 2) Remove floating About button during gameplay; About will live inside Pause menu */
+body.tabletControlBarActive #aboutBtn{
+  display:none!important;
+}
+
+/* 3) Make centered answer box usable with hardware keyboard */
+body.tabletControlBarActive #answer{
+  pointer-events:auto!important;
+  user-select:text!important;
+  -webkit-user-select:text!important;
+  caret-color:#fff!important;
+  touch-action:auto!important;
+}
 
 </style>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -1695,75 +3979,123 @@ applyPlanetAssets();renderPlanetMap();
 </div>
 
 
+<style id="mu-final-input-about-fix-css">
+/* FINAL INPUT + ABOUT FIX: authoritative cascade */
+#gameScreen.active ~ #aboutBtn,
+body.tabletControlBarActive #aboutBtn,
+body.tabletKeyboardSafe #gameScreen.active ~ #aboutBtn{
+  display:none!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+}
+#answerWrap,
+body.tabletKeyboardSafe #answerWrap,
+body.tabletControlBarActive #answerWrap{
+  position:absolute!important;
+  left:50%!important;
+  right:auto!important;
+  bottom:calc(72px + env(safe-area-inset-bottom,0px))!important;
+  transform:translateX(-50%)!important;
+  text-align:center!important;
+  z-index:1002!important;
+}
+#answer,
+body.tabletKeyboardSafe #answer{
+  width:min(440px,42vw)!important;
+  font-size:clamp(28px,3.4vh,42px)!important;
+  text-align:center!important;
+}
+#answerWrap .small,
+body.tabletKeyboardSafe #answerWrap .small{
+  width:100%!important;
+  text-align:center!important;
+}
+body.tabletKeyboardSafe #answer{
+  pointer-events:none!important; /* prevents iPad software keyboard */
+  caret-color:transparent!important;
+}
+#tabletControlBar{z-index:1001!important;}
+</style>
 
 
 
 
+<style id="mu-clean-playhud-final-css">
+/* FINAL CLEAN PLAY HUD FIX
+   Hide stage name / pilot line / impact countdown during gameplay
+   because they block the tablet play area.
+*/
+body.tabletControlBarActive #timer,
+body.tabletControlBarActive #pilotLine,
+body.tabletControlBarActive #stageBadge,
+body.tabletControlBarActive #difficultyBadge,
+body.tabletControlBarActive #bossWarning,
+body.tabletControlBarActive #bossMeteorLabel{
+  display:none!important;
+  visibility:hidden!important;
+  opacity:0!important;
+  pointer-events:none!important;
+}
 
+/* Also hide them whenever the game screen is active, even if tabletControlBarActive is not applied yet. */
+#gameScreen.active #timer,
+#gameScreen.active #pilotLine,
+#gameScreen.active #stageBadge,
+#gameScreen.active #difficultyBadge,
+#gameScreen.active #bossWarning,
+#gameScreen.active #bossMeteorLabel{
+  display:none!important;
+  visibility:hidden!important;
+  opacity:0!important;
+  pointer-events:none!important;
+}
 
+/* Keep the centered answer position from the previous fix */
+#answerWrap,
+body.tabletKeyboardSafe #answerWrap,
+body.tabletControlBarActive #answerWrap{
+  position:absolute!important;
+  left:50%!important;
+  right:auto!important;
+  bottom:calc(72px + env(safe-area-inset-bottom,0px))!important;
+  transform:translateX(-50%)!important;
+  text-align:center!important;
+  z-index:1002!important;
+}
+</style>
 
-
-
-
-
-<script id="oeg0-deep-cleanup-canonical-js">
+<script id="mu-clean-playhud-final-js">
 (function(){
-  function gameActive(){
-    const g=document.getElementById('gameScreen');
-    return !!(g && g.classList.contains('active'));
-  }
   function cleanPlayHud(){
-    ['timer','pilotLine','stageBadge','difficultyBadge','bossWarning','bossMeteorLabel'].forEach(id=>{
+    const ids = ['timer','pilotLine','stageBadge','difficultyBadge','bossWarning','bossMeteorLabel'];
+    const game = document.getElementById('gameScreen');
+    const active = game && game.classList.contains('active');
+    ids.forEach(id=>{
       const el=document.getElementById(id);
-      if(el && gameActive()){
+      if(!el) return;
+      if(active){
         el.style.setProperty('display','none','important');
         el.style.setProperty('visibility','hidden','important');
         el.style.setProperty('opacity','0','important');
         el.style.setProperty('pointer-events','none','important');
-        el.textContent='';
+        el.textContent = '';
       }
     });
   }
-  function ensurePauseAbout(){
-    const btn=document.getElementById('aboutBtn');
-    if(btn && gameActive()) btn.style.setProperty('display','none','important');
-    const actions=document.querySelector('#pauseOverlay .pauseMenuActions');
-    if(actions && !document.getElementById('pauseAboutBtn')){
-      const b=document.createElement('button');
-      b.id='pauseAboutBtn';
-      b.className='secondary';
-      b.textContent='ℹ️ About';
-      b.onclick=function(){
-        const p=document.getElementById('pauseOverlay');
-        const a=document.getElementById('aboutOverlay');
-        if(p) p.style.display='none';
-        if(a) a.style.display='flex';
-      };
-      const danger=actions.querySelector('.dangerBtn');
-      actions.insertBefore(b,danger||null);
-    }
-  }
-  function setupDualInput(){
-    const input=document.getElementById('answer');
-    if(input){
-      input.removeAttribute('readonly');
-      input.setAttribute('inputmode', ((navigator.maxTouchPoints||0)>0 || 'ontouchstart' in window) ? 'none' : 'numeric');
-      input.setAttribute('enterkeyhint','go');
-      input.setAttribute('virtualkeyboardpolicy','manual');
-    }
-  }
-  function tick(){
-    cleanPlayHud();
-    ensurePauseAbout();
-    setupDualInput();
-  }
-  window.addEventListener('DOMContentLoaded',tick);
-  window.addEventListener('resize',tick);
-  window.addEventListener('orientationchange',tick);
-  setTimeout(tick,50);
-  setInterval(tick,500);
+  window.addEventListener('DOMContentLoaded', cleanPlayHud);
+  setTimeout(cleanPlayHud,50);
+  setInterval(cleanPlayHud,250);
 })();
 </script>
 
+<style id="mu-dual-input-root-fix-css">
+#answerWrap,body.tabletKeyboardSafe #answerWrap,body.tabletControlBarActive #answerWrap{
+position:absolute!important;left:50%!important;right:auto!important;
+bottom:calc(72px + env(safe-area-inset-bottom,0px))!important;
+transform:translateX(-50%)!important;text-align:center!important;z-index:1002!important}
+#answer,body.tabletKeyboardSafe #answer,body.tabletControlBarActive #answer{
+pointer-events:auto!important;user-select:text!important;-webkit-user-select:text!important;
+caret-color:#fff!important;touch-action:auto!important}
+</style>
 </body>
 </html>
