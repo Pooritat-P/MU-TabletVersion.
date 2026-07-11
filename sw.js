@@ -1,4 +1,4 @@
-const CACHE_NAME='math-universe-tablet-ux-polish-v1';
+const CACHE_NAME='math-universe-official-icon-pack-v1';
 const ASSETS=['./','./index.html','./manifest.json','./icon.svg','./assets/ui/hero_complete_edition.png','./assets/infographic/development_story.png','./assets/infographic/user_guide.png'];
 self.addEventListener('install',e=>{
   e.waitUntil(caches.open(CACHE_NAME).then(c=>c.addAll(ASSETS)));
